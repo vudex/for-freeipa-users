@@ -1,0 +1,2500 @@
+2023-09-10T06:48:12Z DEBUG Logging to /var/log/ipaclient-install.log
+2023-09-10T06:48:12Z DEBUG ipa-client-install was invoked with arguments [] and options: {'unattended': False, 'principal': None, 'prompt_password': False, 'on_master': False, 'ca_cert_files': None, 'force': False, 'configure_firefox': False, 'firefox_dir': None, 'keytab': None, 'mkhomedir': False, 'force_join': False, 'ntp_servers': None, 'ntp_pool': None, 'no_ntp': False, 'force_ntpd': False, 'nisdomain': None, 'no_nisdomain': False, 'ssh_trust_dns': False, 'no_ssh': False, 'no_sshd': False, 'no_sudo': False, 'no_dns_sshfp': False, 'kinit_attempts': None, 'request_cert': False, 'ip_addresses': None, 'all_ip_addresses': False, 'fixed_primary': False, 'permit': False, 'enable_dns_updates': True, 'no_krb5_offline_passwords': False, 'preserve_sssd': False, 'automount_location': None, 'domain_name': 'test-krb1.novalocal', 'servers': ['freeipa-master-01.test-krb1.novalocal'], 'realm_name': None, 'host_name': None, 'verbose': True, 'quiet': False, 'log_file': None, 'uninstall': False}
+2023-09-10T06:48:12Z DEBUG IPA version 4.8.9-alt4.c9f2.3
+2023-09-10T06:48:12Z DEBUG IPA platform altlinux
+2023-09-10T06:48:12Z DEBUG IPA os-release ALT SPServer 8.4
+2023-09-10T06:48:12Z DEBUG Starting external process
+2023-09-10T06:48:12Z DEBUG args=['/usr/sbin/selinuxenabled']
+2023-09-10T06:48:12Z DEBUG Process finished, return code=1
+2023-09-10T06:48:12Z DEBUG stdout=
+2023-09-10T06:48:12Z DEBUG stderr=
+2023-09-10T06:48:12Z DEBUG Loading Index file from '/var/lib/ipa-client/sysrestore/sysrestore.index'
+2023-09-10T06:48:12Z DEBUG Loading StateFile from '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:12Z DEBUG Loading StateFile from '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:12Z DEBUG Starting external process
+2023-09-10T06:48:12Z DEBUG args=['/sbin/systemctl', 'is-enabled', 'ntpd.service']
+2023-09-10T06:48:12Z DEBUG Process finished, return code=1
+2023-09-10T06:48:12Z DEBUG stdout=
+2023-09-10T06:48:12Z DEBUG stderr=Failed to get unit file state for ntpd.service: No such file or directory
+
+2023-09-10T06:48:12Z DEBUG Starting external process
+2023-09-10T06:48:12Z DEBUG args=['/sbin/systemctl', 'is-active', 'ntpd.service']
+2023-09-10T06:48:12Z DEBUG Process finished, return code=3
+2023-09-10T06:48:12Z DEBUG stdout=inactive
+
+2023-09-10T06:48:12Z DEBUG stderr=
+2023-09-10T06:48:12Z DEBUG Deleting invalid keytab: '/etc/krb5.keytab'.
+2023-09-10T06:48:12Z DEBUG [IPA Discovery]
+2023-09-10T06:48:12Z DEBUG Starting IPA discovery with domain=test-krb1.novalocal, servers=['freeipa-master-01.test-krb1.novalocal'], hostname=host-01.test-krb1.novalocal
+2023-09-10T06:48:12Z DEBUG Server and domain forced
+2023-09-10T06:48:12Z DEBUG [Kerberos realm search]
+2023-09-10T06:48:12Z DEBUG Search DNS for TXT record of _kerberos.test-krb1.novalocal
+2023-09-10T06:48:12Z DEBUG DNS record found: "TEST-KRB1.NOVALOCAL"
+2023-09-10T06:48:12Z DEBUG [LDAP server check]
+2023-09-10T06:48:12Z DEBUG Verifying that freeipa-master-01.test-krb1.novalocal (realm TEST-KRB1.NOVALOCAL) is an IPA server
+2023-09-10T06:48:12Z DEBUG Init LDAP connection to: ldap://freeipa-master-01.test-krb1.novalocal:389
+2023-09-10T06:48:12Z DEBUG Search LDAP server for IPA base DN
+2023-09-10T06:48:12Z DEBUG Check if naming context 'dc=test-krb1,dc=novalocal' is for IPA
+2023-09-10T06:48:12Z DEBUG Naming context 'dc=test-krb1,dc=novalocal' is a valid IPA context
+2023-09-10T06:48:12Z DEBUG Search for (objectClass=krbRealmContainer) in dc=test-krb1,dc=novalocal (sub)
+2023-09-10T06:48:12Z DEBUG Found: cn=TEST-KRB1.NOVALOCAL,cn=kerberos,dc=test-krb1,dc=novalocal
+2023-09-10T06:48:12Z DEBUG Discovery result: Success; server=freeipa-master-01.test-krb1.novalocal, domain=test-krb1.novalocal, kdc=freeipa-master-01.test-krb1.novalocal, basedn=dc=test-krb1,dc=novalocal
+2023-09-10T06:48:12Z DEBUG Validated servers: freeipa-master-01.test-krb1.novalocal
+2023-09-10T06:48:12Z DEBUG will use discovered domain: test-krb1.novalocal
+2023-09-10T06:48:12Z DEBUG Using servers from command line, disabling DNS discovery
+2023-09-10T06:48:12Z DEBUG will use provided server: freeipa-master-01.test-krb1.novalocal
+2023-09-10T06:48:12Z INFO Autodiscovery of servers for failover cannot work with this configuration.
+2023-09-10T06:48:12Z INFO If you proceed with the installation, services will be configured to always access the discovered server for all operations and will not fail over to other servers in case of failure.
+2023-09-10T06:48:15Z DEBUG will use discovered realm: TEST-KRB1.NOVALOCAL
+2023-09-10T06:48:15Z DEBUG will use discovered basedn: dc=test-krb1,dc=novalocal
+2023-09-10T06:48:15Z INFO Client hostname: host-01.test-krb1.novalocal
+2023-09-10T06:48:15Z DEBUG Hostname source: Machine's FQDN
+2023-09-10T06:48:15Z INFO Realm: TEST-KRB1.NOVALOCAL
+2023-09-10T06:48:15Z DEBUG Realm source: Discovered from LDAP DNS records in freeipa-master-01.test-krb1.novalocal
+2023-09-10T06:48:15Z INFO DNS Domain: test-krb1.novalocal
+2023-09-10T06:48:15Z DEBUG DNS Domain source: Forced
+2023-09-10T06:48:15Z INFO IPA Server: freeipa-master-01.test-krb1.novalocal
+2023-09-10T06:48:15Z DEBUG IPA Server source: Provided as option
+2023-09-10T06:48:15Z INFO BaseDN: dc=test-krb1,dc=novalocal
+2023-09-10T06:48:15Z DEBUG BaseDN source: From IPA server ldap://freeipa-master-01.test-krb1.novalocal:389
+2023-09-10T06:48:17Z DEBUG Loading Index file from '/var/lib/ipa-client/sysrestore/sysrestore.index'
+2023-09-10T06:48:17Z DEBUG Loading StateFile from '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:17Z DEBUG Loading StateFile from '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:17Z DEBUG Saving StateFile to '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:17Z DEBUG Starting external process
+2023-09-10T06:48:17Z DEBUG args=['/usr/sbin/ipa-rmkeytab', '-k', '/etc/krb5.keytab', '-r', 'TEST-KRB1.NOVALOCAL']
+2023-09-10T06:48:17Z DEBUG Process finished, return code=3
+2023-09-10T06:48:17Z DEBUG stdout=
+2023-09-10T06:48:17Z DEBUG stderr=Failed to open keytab '/etc/krb5.keytab': No such file or directory
+
+2023-09-10T06:48:17Z DEBUG Backing up /etc/chrony.conf
+2023-09-10T06:48:17Z DEBUG Backing up system configuration file '/etc/chrony.conf'
+2023-09-10T06:48:17Z DEBUG Saving Index File to '/var/lib/ipa-client/sysrestore/sysrestore.index'
+2023-09-10T06:48:17Z DEBUG Backing up state CHRONY
+2023-09-10T06:48:17Z DEBUG Starting external process
+2023-09-10T06:48:17Z DEBUG args=['/sbin/systemctl', 'is-enabled', 'chronyd.service']
+2023-09-10T06:48:17Z DEBUG Process finished, return code=0
+2023-09-10T06:48:17Z DEBUG stdout=enabled
+
+2023-09-10T06:48:17Z DEBUG stderr=
+2023-09-10T06:48:17Z DEBUG Starting external process
+2023-09-10T06:48:17Z DEBUG args=['/sbin/systemctl', 'is-active', 'chronyd.service']
+2023-09-10T06:48:17Z DEBUG Process finished, return code=3
+2023-09-10T06:48:17Z DEBUG stdout=inactive
+
+2023-09-10T06:48:17Z DEBUG stderr=
+2023-09-10T06:48:17Z DEBUG Loading StateFile from '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:17Z DEBUG Saving StateFile to '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:17Z DEBUG Loading StateFile from '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:17Z DEBUG Saving StateFile to '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:17Z DEBUG Configuring CHRONY
+2023-09-10T06:48:17Z DEBUG Starting external process
+2023-09-10T06:48:17Z DEBUG args=['/sbin/systemctl', 'stop', 'chronyd.service']
+2023-09-10T06:48:17Z DEBUG Process finished, return code=0
+2023-09-10T06:48:17Z DEBUG stdout=
+2023-09-10T06:48:17Z DEBUG stderr=
+2023-09-10T06:48:17Z DEBUG Stop of chronyd.service complete
+2023-09-10T06:48:17Z DEBUG Search DNS for SRV record of _ntp._udp.test-krb1.novalocal
+2023-09-10T06:48:17Z DEBUG DNS record found: 0 100 123 freeipa-master-01.test-krb1.novalocal.
+2023-09-10T06:48:17Z DEBUG Writing configuration to /etc/chrony.conf
+2023-09-10T06:48:17Z DEBUG Starting external process
+2023-09-10T06:48:17Z DEBUG args=['/usr/sbin/selinuxenabled']
+2023-09-10T06:48:17Z DEBUG Process finished, return code=1
+2023-09-10T06:48:17Z DEBUG stdout=
+2023-09-10T06:48:17Z DEBUG stderr=
+2023-09-10T06:48:17Z INFO Attempting to sync time with CHRONY
+2023-09-10T06:48:17Z INFO It may take a few seconds
+2023-09-10T06:48:17Z DEBUG Starting external process
+2023-09-10T06:48:17Z DEBUG args=['/sbin/systemctl', 'is-enabled', 'chronyd.service']
+2023-09-10T06:48:17Z DEBUG Process finished, return code=0
+2023-09-10T06:48:17Z DEBUG stdout=enabled
+
+2023-09-10T06:48:17Z DEBUG stderr=
+2023-09-10T06:48:17Z DEBUG Starting external process
+2023-09-10T06:48:17Z DEBUG args=['/sbin/systemctl', 'is-active', 'chronyd.service']
+2023-09-10T06:48:17Z DEBUG Process finished, return code=3
+2023-09-10T06:48:17Z DEBUG stdout=inactive
+
+2023-09-10T06:48:17Z DEBUG stderr=
+2023-09-10T06:48:17Z DEBUG Loading StateFile from '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:17Z DEBUG Saving StateFile to '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:17Z DEBUG Loading StateFile from '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:17Z DEBUG Saving StateFile to '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:17Z DEBUG Starting external process
+2023-09-10T06:48:17Z DEBUG args=['/sbin/systemctl', 'disable', 'chronyd.service']
+2023-09-10T06:48:17Z DEBUG Process finished, return code=0
+2023-09-10T06:48:17Z DEBUG stdout=
+2023-09-10T06:48:17Z DEBUG stderr=Synchronizing state of chronyd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install disable chronyd
+Removed /etc/systemd/system/multi-user.target.wants/chronyd.service.
+
+2023-09-10T06:48:17Z DEBUG Starting external process
+2023-09-10T06:48:17Z DEBUG args=['/sbin/systemctl', 'enable', 'chronyd.service']
+2023-09-10T06:48:17Z DEBUG Process finished, return code=0
+2023-09-10T06:48:17Z DEBUG stdout=
+2023-09-10T06:48:17Z DEBUG stderr=Synchronizing state of chronyd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable chronyd
+Created symlink /etc/systemd/system/multi-user.target.wants/chronyd.service → /lib/systemd/system/chronyd.service.
+
+2023-09-10T06:48:17Z DEBUG Starting external process
+2023-09-10T06:48:17Z DEBUG args=['/sbin/systemctl', 'start', 'chronyd.service']
+2023-09-10T06:48:17Z DEBUG Process finished, return code=0
+2023-09-10T06:48:17Z DEBUG stdout=
+2023-09-10T06:48:17Z DEBUG stderr=
+2023-09-10T06:48:17Z DEBUG Starting external process
+2023-09-10T06:48:17Z DEBUG args=['/sbin/systemctl', 'is-active', 'chronyd.service']
+2023-09-10T06:48:17Z DEBUG Process finished, return code=0
+2023-09-10T06:48:17Z DEBUG stdout=active
+
+2023-09-10T06:48:17Z DEBUG stderr=
+2023-09-10T06:48:17Z DEBUG Start of chronyd.service complete
+2023-09-10T06:48:17Z DEBUG Starting external process
+2023-09-10T06:48:17Z DEBUG args=['/usr/bin/chronyc', 'waitsync', '3', '-d']
+2023-09-10T06:48:28Z DEBUG Process finished, return code=0
+2023-09-10T06:48:28Z DEBUG stdout=try: 1, refid: 00000000, correction: 0.000000000, skew: 0.000
+try: 2, refid: AC1C13E5, correction: 0.000000174, skew: 0.006
+
+2023-09-10T06:48:28Z DEBUG stderr=
+2023-09-10T06:48:30Z DEBUG will use principal provided as option: admin
+2023-09-10T06:48:30Z DEBUG Starting external process
+2023-09-10T06:48:30Z DEBUG args=['/usr/sbin/selinuxenabled']
+2023-09-10T06:48:30Z DEBUG Process finished, return code=1
+2023-09-10T06:48:30Z DEBUG stdout=
+2023-09-10T06:48:30Z DEBUG stderr=
+2023-09-10T06:48:30Z DEBUG Starting external process
+2023-09-10T06:48:30Z DEBUG args=['/bin/keyctl', 'get_persistent', '@s', '0']
+2023-09-10T06:48:30Z DEBUG Process finished, return code=0
+2023-09-10T06:48:30Z DEBUG stdout=345865177
+
+2023-09-10T06:48:30Z DEBUG stderr=
+2023-09-10T06:48:30Z DEBUG Enabling persistent keyring CCACHE
+2023-09-10T06:48:30Z DEBUG Writing Kerberos configuration to /tmp/.private/root/tmp62r_pr6o:
+2023-09-10T06:48:30Z DEBUG #File modified by ipa-client-install
+
+includedir /etc/krb5.conf.d/
+includedir /var/lib/sss/pubconf/krb5.include.d/
+
+[libdefaults]
+  default_realm = TEST-KRB1.NOVALOCAL
+  dns_lookup_realm = false
+  dns_lookup_kdc = false
+  rdns = false
+  dns_canonicalize_hostname = false
+  ticket_lifetime = 24h
+  forwardable = true
+  udp_preference_limit = 0
+  default_ccache_name = KEYRING:persistent:%{uid}
+
+
+[realms]
+  TEST-KRB1.NOVALOCAL = {
+    kdc = freeipa-master-01.test-krb1.novalocal:88
+    master_kdc = freeipa-master-01.test-krb1.novalocal:88
+    admin_server = freeipa-master-01.test-krb1.novalocal:749
+    kpasswd_server = freeipa-master-01.test-krb1.novalocal:464
+    default_domain = test-krb1.novalocal
+    pkinit_anchors = FILE:/var/lib/ipa-client/pki/kdc-ca-bundle.pem
+    pkinit_pool = FILE:/var/lib/ipa-client/pki/ca-bundle.pem
+
+  }
+
+
+[domain_realm]
+  .test-krb1.novalocal = TEST-KRB1.NOVALOCAL
+  test-krb1.novalocal = TEST-KRB1.NOVALOCAL
+  host-01.test-krb1.novalocal = TEST-KRB1.NOVALOCAL
+
+
+
+2023-09-10T06:48:30Z DEBUG Writing configuration file /tmp/.private/root/tmp62r_pr6o
+2023-09-10T06:48:30Z DEBUG #File modified by ipa-client-install
+
+includedir /etc/krb5.conf.d/
+includedir /var/lib/sss/pubconf/krb5.include.d/
+
+[libdefaults]
+  default_realm = TEST-KRB1.NOVALOCAL
+  dns_lookup_realm = false
+  dns_lookup_kdc = false
+  rdns = false
+  dns_canonicalize_hostname = false
+  ticket_lifetime = 24h
+  forwardable = true
+  udp_preference_limit = 0
+  default_ccache_name = KEYRING:persistent:%{uid}
+
+
+[realms]
+  TEST-KRB1.NOVALOCAL = {
+    kdc = freeipa-master-01.test-krb1.novalocal:88
+    master_kdc = freeipa-master-01.test-krb1.novalocal:88
+    admin_server = freeipa-master-01.test-krb1.novalocal:749
+    kpasswd_server = freeipa-master-01.test-krb1.novalocal:464
+    default_domain = test-krb1.novalocal
+    pkinit_anchors = FILE:/var/lib/ipa-client/pki/kdc-ca-bundle.pem
+    pkinit_pool = FILE:/var/lib/ipa-client/pki/ca-bundle.pem
+
+  }
+
+
+[domain_realm]
+  .test-krb1.novalocal = TEST-KRB1.NOVALOCAL
+  test-krb1.novalocal = TEST-KRB1.NOVALOCAL
+  host-01.test-krb1.novalocal = TEST-KRB1.NOVALOCAL
+
+
+
+2023-09-10T06:48:32Z DEBUG Initializing principal admin@TEST-KRB1.NOVALOCAL using password
+2023-09-10T06:48:32Z DEBUG Starting external process
+2023-09-10T06:48:32Z DEBUG args=['/usr/bin/kinit', 'admin@TEST-KRB1.NOVALOCAL', '-c', '/tmp/.private/root/krbccmum3x2al/ccache']
+2023-09-10T06:48:32Z DEBUG Process finished, return code=0
+2023-09-10T06:48:32Z DEBUG stdout=Password for admin@TEST-KRB1.NOVALOCAL: 
+
+2023-09-10T06:48:32Z DEBUG stderr=
+2023-09-10T06:48:32Z DEBUG trying to retrieve CA cert via LDAP from freeipa-master-01.test-krb1.novalocal
+2023-09-10T06:48:32Z DEBUG retrieving schema for SchemaCache url=ldap://freeipa-master-01.test-krb1.novalocal:389 conn=<ldap.ldapobject.SimpleLDAPObject object at 0x7fbe9aee6c90>
+2023-09-10T06:48:32Z INFO Successfully retrieved CA cert
+    Subject:     CN=Certificate Authority,O=TEST-KRB1.NOVALOCAL
+    Issuer:      CN=Certificate Authority,O=TEST-KRB1.NOVALOCAL
+    Valid From:  2023-09-09 07:06:06
+    Valid Until: 2043-09-09 07:06:06
+
+2023-09-10T06:48:32Z DEBUG Starting external process
+2023-09-10T06:48:32Z DEBUG args=['/usr/sbin/ipa-join', '-s', 'freeipa-master-01.test-krb1.novalocal', '-b', 'dc=test-krb1,dc=novalocal', '-h', 'host-01.test-krb1.novalocal', '-k', '/etc/krb5.keytab', '-d']
+2023-09-10T06:48:32Z DEBUG Process finished, return code=0
+2023-09-10T06:48:32Z DEBUG stdout=
+2023-09-10T06:48:32Z DEBUG stderr=XML-RPC CALL:
+
+<?xml version="1.0" encoding="UTF-8"?>\r\n
+<methodCall>\r\n
+<methodName>join</methodName>\r\n
+<params>\r\n
+<param><value><array><data>\r\n
+<value><string>host-01.test-krb1.novalocal</string></value>\r\n
+</data></array></value></param>\r\n
+<param><value><struct>\r\n
+<member><name>nsosversion</name>\r\n
+<value><string>5.10.188-std-def-alt0.c9f.2</string></value></member>\r\n
+<member><name>nshardwareplatform</name>\r\n
+<value><string>x86_64</string></value></member>\r\n
+</struct></value></param>\r\n
+</params>\r\n
+</methodCall>\r\n
+
+*   Trying 172.28.19.229:443...
+* Connected to freeipa-master-01.test-krb1.novalocal (172.28.19.229) port 443 (#0)
+* ALPN: offers h2
+* ALPN: offers http/1.1
+*  CAfile: /etc/ipa/ca.crt
+*  CApath: none
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
+* ALPN: server accepted http/1.1
+* Server certificate:
+*  subject: O=TEST-KRB1.NOVALOCAL; CN=freeipa-master-01.test-krb1.novalocal
+*  start date: Sep  9 07:08:15 2023 GMT
+*  expire date: Sep  9 07:08:15 2025 GMT
+*  subjectAltName: host "freeipa-master-01.test-krb1.novalocal" matched cert's "freeipa-master-01.test-krb1.novalocal"
+*  issuer: O=TEST-KRB1.NOVALOCAL; CN=Certificate Authority
+*  SSL certificate verify ok.
+* Server auth using Negotiate with user ''
+> POST /ipa/xml HTTP/1.1
+Host: freeipa-master-01.test-krb1.novalocal
+Authorization: Negotiate YIIGUQYGKwYBBQUCoIIGRTCCBkGgDTALBgkqhkiG9xIBAgKiggYuBIIGKmCCBiYGCSqGSIb3EgECAgEAboIGFTCCBhGgAwIBBaEDAgEOogcDBQAgAAAAo4IB42GCAd8wggHboAMCAQWhFRsTVEVTVC1LUkIxLk5PVkFMT0NBTKI4MDagAwIBA6EvMC0bBEhUVFAbJWZyZWVpcGEtbWFzdGVyLTAxLnRlc3Qta3JiMS5ub3ZhbG9jYWyjggGBMIIBfaADAgESoQMCAQGiggFvBIIBa0FgLq1t/GJ4X4b6whDFfVYmRGvsk8r8uainiTGoyVEpf4sVW6ys+tskcmR+ga3hj1q4AOHDTPxfX2zr8xgWOVukEVkzGgypeU+ugFXxONweHH0lVOnmmzk8LBw7ycjGMhX37NZ5S3G0qLY7qJuA+XgE0WipS9uh8U9Zo36e798UiEETi31Ooann/qmqHFB8fg/5s1upg/wzzWkZURrk3BL+zQiRg4H/zt8f6PQ+6UqtZHgZL4XG2UDaqdVIH/+fiSMVGqnw6W2XLrWG/t+jxMpslcshnvaXjUQosNpdPIuHlWGuIHb5W4LiYW9nQIiPbna4z4Z20vYrbwOjZA9OoA1LxrF0qAyVAyBEA9GUkDJRRnoOEFYZar1cEiNKfVCH0yL6mEi4nxLHPPqSuO2VOCMCqcmdyh2z5CS60P3uaJvQxq3/XsPmvz8CDoZr/u1sLIS7rGmpAZ1YkKajJaBnPSIuZBMfyxrdaznuI6SCBBMwggQPoAMCARKiggQGBIIEAslKJMPoyQ8dhzNUpjebayYlncZKwyeGH+6XzSsF4i8wL+JORI+XmeAJH0gy9qaoSUbz+wTczZ3vmfMyDINjJ6f8VOa18Ml4ds3s8hDewby1hfWMacm6iyPjcdRws5eZOroojCsks7AtJ/Yh36FStBB5VaiwT9vpqo2lqyxNXElsuYhlnJwHAyatMR44eotIrWsvnjHWvMWlWghhiFwHvyoFSTspwkr5g0H0Y8IncaZ3/YY3r8b21zT77aIsFrZqqfF9u4vPYqdtbwTJFGdd58bXM5xHfyU3WO/GBQPQLXIiSMLINquE60v8ejrdCWuFEYX7HS7Cv7hgPNjJnhm+MAATsphWGcdQknzP1PLoXIzClvOyH2zUNTkG6kle7LBufVgR9GmRCD12PuEh9W+MNPp3lEO2f2eSmpE8FBum3ccnRcNueei2DGnfdwc0rEt2qczwnJNW36lP5yaeD1QjWw9ZN4+GwhJny6ngV8sQYEl5lFwLYbxg9yf4wfwaKF1GMnAJ+Tr/AFHIHr//XBsxhLpam/hs1iiV+CXrIIAowILvmDA2vxnXjxlF6BIzlhw9w6JhrtuAH0gT5iQstWbaR+NAOY/elW77B9LEBDKigBgso06YCykSgk1RkGHTaurr+/DvVqRw8uV35ewrZx0374nM22cpANLulDVMQADvFypHmFT7i3414ym+fzzyYpwp9nFaLoRot0qsUP98RFctunX32i/x5Hw3Fh0GXSAvC8WWGXXsXoAzIqAw4LiaduDTBa2WeIOl+EJu/0EPuxEYu8VdGlkn7mzS9jR75EBXqcys0gXz8FFv+J/04N6nLKNXe6sWezd4fIiw0oc4uZ7oDoJP2/rIJJXy35di0D8wXVTp4WJFc9fcEt31kvEZ0hFh3759CVDaZG2EMAPqYkzqZ7yql90iguB42fMP0iCzi9Mghu9xNDo5V2pB9Ja7sLyTIGnVjd6TlhEVKuX2zRyE05PxhmkXJYmHLoOGzIsr7OKxg/NlHoNhHgKsaH0WRWEcHzsH0G+SBqeDvPLNjoQMKRMbeAJGiIozEtFt3nc/4mZjXxk16Z1TThiL6zBHQyi0M0FNdOU0FgGCm7szquF/hxSECcPuMcwp+VCvLCFlVRb1aSzO2tmkc+wNcdkJH8sOUjek5IMk8SVV/W1vjcrlNw0Goj987xm811DOOkROEXb9kJv84leXT5Nx9CAEQYp99dNRJwFtbWYAY3YRPi26IMFEW02UnLpX8f/Lt7SFjac6sXAvx6Y78qzc7gken18HvVBSRb2bNRHJuknmPeRHtMUTaXQSExM5gltTb/EEfDtAPOoClrJ7v9Lb5l7h1O1ItKKVuxLUVRPFo5uDabqyaiYMLA==
+Accept: */*
+Content-Type: text/xml
+User-Agent: ipa-join/4.8.9
+Referer: https://freeipa-master-01.test-krb1.novalocal/ipa/xml
+X-Original-User-Agent: Xmlrpc-c/1.51.3 Curl/7.86.0
+Content-Length: 489
+
+* old SSL session ID is stale, removing
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 Success
+< Date: Sun, 10 Sep 2023 06:48:32 GMT
+< Server: Apache/2.4.56 (Unix) mod_auth_gssapi/1.6.1 OpenSSL/1.1.1u mod_wsgi/4.6.5 Python/3.7
+< WWW-Authenticate: Negotiate oYG3MIG0oAMKAQChCwYJKoZIhvcSAQICooGfBIGcYIGZBgkqhkiG9xIBAgICAG+BiTCBhqADAgEFoQMCAQ+iejB4oAMCARKicQRvZUVig0875pKHyNVDJkZ5aFkfBN2raTKjmm0r15Po6hCBHzECTnJb3ZEja2+VlP6asLe1sxVKztcxw2duuzrfU7fmDghgeV6Dc/K3N4ThRZ4O81muRpHKxCg26unp/J676YZLRmAwiqLcZ9aPdB89
+* Added cookie ipa_session="MagBearerToken=XGVXWZvSCi1IgMt2hGRlXpe6hon6B4EqkphXZC1EOpWaBLbVz%2b%2fCiKsaAD0UuSXylXuqdDOkBjIBAPo9vF%2b%2fncvmyx%2b07fLejL3IHhjCfmKecHyMh2lZWrXVqATMpTCmhlHfD3FTYwciLpEwAPyR4FFaGcP1RViJT9OAd4EZtaepgNYNaB%2fdnQRqtIOvaRh%2bLb8Y%2f4aX7sDRZDv3BM35xg%3d%3d" for domain freeipa-master-01.test-krb1.novalocal, path /ipa, expire 0
+< Set-Cookie: ipa_session=MagBearerToken=XGVXWZvSCi1IgMt2hGRlXpe6hon6B4EqkphXZC1EOpWaBLbVz%2b%2fCiKsaAD0UuSXylXuqdDOkBjIBAPo9vF%2b%2fncvmyx%2b07fLejL3IHhjCfmKecHyMh2lZWrXVqATMpTCmhlHfD3FTYwciLpEwAPyR4FFaGcP1RViJT9OAd4EZtaepgNYNaB%2fdnQRqtIOvaRh%2bLb8Y%2f4aX7sDRZDv3BM35xg%3d%3d;path=/ipa;httponly;secure;
+< X-Frame-Options: DENY
+< Content-Security-Policy: frame-ancestors 'none'
+< Cache-Control: no-cache, private
+< Vary: Accept-Encoding
+< Transfer-Encoding: chunked
+< Content-Type: text/xml; charset=utf-8
+< 
+* Connection #0 to host freeipa-master-01.test-krb1.novalocal left intact
+XML-RPC RESPONSE:
+
+<?xml version='1.0' encoding='UTF-8'?>\n
+<methodResponse>\n
+<params>\n
+<param>\n
+<value><array><data>\n
+<value><string>fqdn=host-01.test-krb1.novalocal,cn=computers,cn=accounts,dc=test-krb1,dc=novalocal</string></value>\n
+<value><struct>\n
+<member>\n
+<name>ipauniqueid</name>\n
+<value><array><data>\n
+<value><string>0ebc8da8-4fa6-11ee-8c77-fa163ed657b5</string></value>\n
+</data></array></value>\n
+</member>\n
+<member>\n
+<name>krbcanonicalname</name>\n
+<value><array><data>\n
+<value><string>host/host-01.test-krb1.novalocal@TEST-KRB1.NOVALOCAL</string></value>\n
+</data></array></value>\n
+</member>\n
+<member>\n
+<name>fqdn</name>\n
+<value><array><data>\n
+<value><string>host-01.test-krb1.novalocal</string></value>\n
+</data></array></value>\n
+</member>\n
+<member>\n
+<name>nsosversion</name>\n
+<value><array><data>\n
+<value><string>5.10.188-std-def-alt0.c9f.2</string></value>\n
+</data></array></value>\n
+</member>\n
+<member>\n
+<name>krbprincipalname</name>\n
+<value><array><data>\n
+<value><string>host/host-01.test-krb1.novalocal@TEST-KRB1.NOVALOCAL</string></value>\n
+</data></array></value>\n
+</member>\n
+<member>\n
+<name>nshardwareplatform</name>\n
+<value><array><data>\n
+<value><string>x86_64</string></value>\n
+</data></array></value>\n
+</member>\n
+<member>\n
+<name>objectclass</name>\n
+<value><array><data>\n
+<value><string>ipaobject</string></value>\n
+<value><string>nshost</string></value>\n
+<value><string>ipahost</string></value>\n
+<value><string>pkiuser</string></value>\n
+<value><string>ipaservice</string></value>\n
+<value><string>krbprincipalaux</string></value>\n
+<value><string>krbprincipal</string></value>\n
+<value><string>ieee802device</string></value>\n
+<value><string>ipasshhost</string></value>\n
+<value><string>top</string></value>\n
+<value><string>ipaSshGroupOfPubKeys</string></value>\n
+</data></array></value>\n
+</member>\n
+<member>\n
+<name>has_password</name>\n
+<value><boolean>0</boolean></value>\n
+</member>\n
+<member>\n
+<name>has_keytab</name>\n
+<value><boolean>0</boolean></value>\n
+</member>\n
+<member>\n
+<name>managedby_host</name>\n
+<value><array><data>\n
+<value><string>host-01.test-krb1.novalocal</string></value>\n
+</data></array></value>\n
+</member>\n
+<member>\n
+<name>dn</name>\n
+<value><string>fqdn=host-01.test-krb1.novalocal,cn=computers,cn=accounts,dc=test-krb1,dc=novalocal</string></value>\n
+</member>\n
+<member>\n
+<name>ipacertificatesubjectbase</name>\n
+<value><array><data>\n
+<value><string>O=TEST-KRB1.NOVALOCAL</string></value>\n
+</data></array></value>\n
+</member>\n
+</struct></value>\n
+</data></array></value>\n
+</param>\n
+</params>\n
+</methodResponse>\n
+
+Keytab successfully retrieved and stored in: /etc/krb5.keytab
+
+2023-09-10T06:48:32Z INFO Enrolled in IPA realm TEST-KRB1.NOVALOCAL
+2023-09-10T06:48:32Z DEBUG Starting external process
+2023-09-10T06:48:32Z DEBUG args=['/usr/bin/kdestroy']
+2023-09-10T06:48:32Z DEBUG Process finished, return code=0
+2023-09-10T06:48:32Z DEBUG stdout=
+2023-09-10T06:48:32Z DEBUG stderr=
+2023-09-10T06:48:32Z DEBUG Initializing principal host/host-01.test-krb1.novalocal@TEST-KRB1.NOVALOCAL using keytab /etc/krb5.keytab
+2023-09-10T06:48:32Z DEBUG using ccache /etc/ipa/.dns_ccache
+2023-09-10T06:48:32Z DEBUG Attempt 1/5: success
+2023-09-10T06:48:32Z DEBUG Backing up system configuration file '/etc/ipa/default.conf'
+2023-09-10T06:48:32Z DEBUG   -> Not backing up - '/etc/ipa/default.conf' doesn't exist
+2023-09-10T06:48:32Z DEBUG Writing configuration file /etc/ipa/default.conf
+2023-09-10T06:48:32Z DEBUG #File modified by ipa-client-install
+
+[global]
+basedn = dc=test-krb1,dc=novalocal
+realm = TEST-KRB1.NOVALOCAL
+domain = test-krb1.novalocal
+server = freeipa-master-01.test-krb1.novalocal
+host = host-01.test-krb1.novalocal
+xmlrpc_uri = https://freeipa-master-01.test-krb1.novalocal/ipa/xml
+enable_ra = True
+
+
+
+2023-09-10T06:48:32Z INFO Created /etc/ipa/default.conf
+2023-09-10T06:48:32Z DEBUG Backing up system configuration file '/etc/sssd/sssd.conf'
+2023-09-10T06:48:32Z DEBUG Saving Index File to '/var/lib/ipa-client/sysrestore/sysrestore.index'
+2023-09-10T06:48:32Z DEBUG Backing up system configuration file '/etc/nsswitch.conf'
+2023-09-10T06:48:32Z DEBUG Saving Index File to '/var/lib/ipa-client/sysrestore/sysrestore.index'
+2023-09-10T06:48:32Z DEBUG Updating configuration file /etc/nsswitch.conf
+2023-09-10T06:48:32Z DEBUG 
+#
+# Please refer to nsswitch.conf(5) for more information on this file.
+#
+# This is the Name Service Switch configuration file.  This file should
+# be sorted with the most-used databases at the beginning.
+#
+# Specifying '[NOTFOUND=return]' means that the search for an entry
+# should stop if the search with the previous service turned up nothing.
+# Note that if the search failed due to some other reason (like no NIS
+# server responding) then the search continues with the next service.
+#
+# Legal name services are:
+#
+#	files			Use local files
+#	tcb			Use local tcb shadow files, see tcb(5)
+#	db			Use local database files under /var/db
+#	nis or yp		Use NIS (NIS version 2), also called YP
+#	nisplus or nis+		Use NIS+ (NIS version 3)
+#	dns			Use DNS (Domain Name Service)
+#	compat			Use NIS in compatibility mode
+#	hesiod			Use Hesiod for user lookups
+#	[NOTFOUND=return]	Stop searching if not found so far
+#
+
+passwd:     files
+shadow:     tcb files
+group:      files
+gshadow:    files
+
+hosts:      files dns myhostname
+
+# To use db, put the "db" in front of "files" for things you want to be
+# looked up first in the db files.
+#
+#passwd:    db files nisplus nis
+#shadow:    db tcb files nisplus nis
+#group:     db files nisplus nis
+#
+#hosts:     db files nisplus nis dns
+
+ethers:     files
+netmasks:   files
+networks:   files
+protocols:  files
+rpc:        files
+services:   files
+
+# Example - obey only what nisplus tells us...
+#services:  nisplus [NOTFOUND=return] files
+#networks:  nisplus [NOTFOUND=return] files
+#protocols: nisplus [NOTFOUND=return] files
+#rpc:       nisplus [NOTFOUND=return] files
+#ethers:    nisplus [NOTFOUND=return] files
+#netmasks:  nisplus [NOTFOUND=return] files
+#bootparams: nisplus [NOTFOUND=return] files
+#netgroup:   nisplus
+#publickey:  nisplus
+
+automount:  files
+aliases:    files
+sudoers: files sss
+
+2023-09-10T06:48:32Z INFO Configured sudoers in /etc/nsswitch.conf
+2023-09-10T06:48:32Z INFO Configured /etc/sssd/sssd.conf
+2023-09-10T06:48:32Z DEBUG Backing up system configuration file '/etc/krb5.conf'
+2023-09-10T06:48:32Z DEBUG Saving Index File to '/var/lib/ipa-client/sysrestore/sysrestore.index'
+2023-09-10T06:48:32Z DEBUG Starting external process
+2023-09-10T06:48:32Z DEBUG args=['/usr/sbin/selinuxenabled']
+2023-09-10T06:48:32Z DEBUG Process finished, return code=1
+2023-09-10T06:48:32Z DEBUG stdout=
+2023-09-10T06:48:32Z DEBUG stderr=
+2023-09-10T06:48:32Z DEBUG Starting external process
+2023-09-10T06:48:32Z DEBUG args=['/bin/keyctl', 'get_persistent', '@s', '0']
+2023-09-10T06:48:32Z DEBUG Process finished, return code=0
+2023-09-10T06:48:32Z DEBUG stdout=345865177
+
+2023-09-10T06:48:32Z DEBUG stderr=
+2023-09-10T06:48:32Z DEBUG Enabling persistent keyring CCACHE
+2023-09-10T06:48:32Z DEBUG Writing Kerberos configuration to /etc/krb5.conf:
+2023-09-10T06:48:32Z DEBUG #File modified by ipa-client-install
+
+includedir /etc/krb5.conf.d/
+includedir /var/lib/sss/pubconf/krb5.include.d/
+
+[libdefaults]
+  default_realm = TEST-KRB1.NOVALOCAL
+  dns_lookup_realm = false
+  dns_lookup_kdc = false
+  rdns = false
+  dns_canonicalize_hostname = false
+  ticket_lifetime = 24h
+  forwardable = true
+  udp_preference_limit = 0
+  default_ccache_name = KEYRING:persistent:%{uid}
+
+
+[realms]
+  TEST-KRB1.NOVALOCAL = {
+    kdc = freeipa-master-01.test-krb1.novalocal:88
+    master_kdc = freeipa-master-01.test-krb1.novalocal:88
+    admin_server = freeipa-master-01.test-krb1.novalocal:749
+    kpasswd_server = freeipa-master-01.test-krb1.novalocal:464
+    default_domain = test-krb1.novalocal
+    pkinit_anchors = FILE:/var/lib/ipa-client/pki/kdc-ca-bundle.pem
+    pkinit_pool = FILE:/var/lib/ipa-client/pki/ca-bundle.pem
+
+  }
+
+
+[domain_realm]
+  .test-krb1.novalocal = TEST-KRB1.NOVALOCAL
+  test-krb1.novalocal = TEST-KRB1.NOVALOCAL
+  host-01.test-krb1.novalocal = TEST-KRB1.NOVALOCAL
+
+
+
+2023-09-10T06:48:32Z DEBUG Writing configuration file /etc/krb5.conf
+2023-09-10T06:48:32Z DEBUG #File modified by ipa-client-install
+
+includedir /etc/krb5.conf.d/
+includedir /var/lib/sss/pubconf/krb5.include.d/
+
+[libdefaults]
+  default_realm = TEST-KRB1.NOVALOCAL
+  dns_lookup_realm = false
+  dns_lookup_kdc = false
+  rdns = false
+  dns_canonicalize_hostname = false
+  ticket_lifetime = 24h
+  forwardable = true
+  udp_preference_limit = 0
+  default_ccache_name = KEYRING:persistent:%{uid}
+
+
+[realms]
+  TEST-KRB1.NOVALOCAL = {
+    kdc = freeipa-master-01.test-krb1.novalocal:88
+    master_kdc = freeipa-master-01.test-krb1.novalocal:88
+    admin_server = freeipa-master-01.test-krb1.novalocal:749
+    kpasswd_server = freeipa-master-01.test-krb1.novalocal:464
+    default_domain = test-krb1.novalocal
+    pkinit_anchors = FILE:/var/lib/ipa-client/pki/kdc-ca-bundle.pem
+    pkinit_pool = FILE:/var/lib/ipa-client/pki/ca-bundle.pem
+
+  }
+
+
+[domain_realm]
+  .test-krb1.novalocal = TEST-KRB1.NOVALOCAL
+  test-krb1.novalocal = TEST-KRB1.NOVALOCAL
+  host-01.test-krb1.novalocal = TEST-KRB1.NOVALOCAL
+
+
+
+2023-09-10T06:48:32Z INFO Configured /etc/krb5.conf for IPA realm TEST-KRB1.NOVALOCAL
+2023-09-10T06:48:32Z DEBUG Starting external process
+2023-09-10T06:48:32Z DEBUG args=['/usr/bin/certutil', '-d', '/tmp/.private/root/tmp8rzmjxyk', '-N', '-f', '/tmp/.private/root/tmp8rzmjxyk/pwdfile.txt', '-@', '/tmp/.private/root/tmp8rzmjxyk/pwdfile.txt']
+2023-09-10T06:48:32Z DEBUG Process finished, return code=0
+2023-09-10T06:48:32Z DEBUG stdout=
+2023-09-10T06:48:32Z DEBUG stderr=
+2023-09-10T06:48:32Z DEBUG Starting external process
+2023-09-10T06:48:32Z DEBUG args=['/usr/sbin/selinuxenabled']
+2023-09-10T06:48:32Z DEBUG Process finished, return code=1
+2023-09-10T06:48:32Z DEBUG stdout=
+2023-09-10T06:48:32Z DEBUG stderr=
+2023-09-10T06:48:32Z DEBUG Starting external process
+2023-09-10T06:48:32Z DEBUG args=['/usr/sbin/selinuxenabled']
+2023-09-10T06:48:32Z DEBUG Process finished, return code=1
+2023-09-10T06:48:32Z DEBUG stdout=
+2023-09-10T06:48:32Z DEBUG stderr=
+2023-09-10T06:48:32Z DEBUG Starting external process
+2023-09-10T06:48:32Z DEBUG args=['/usr/sbin/selinuxenabled']
+2023-09-10T06:48:32Z DEBUG Process finished, return code=1
+2023-09-10T06:48:32Z DEBUG stdout=
+2023-09-10T06:48:32Z DEBUG stderr=
+2023-09-10T06:48:32Z DEBUG Starting external process
+2023-09-10T06:48:32Z DEBUG args=['/usr/sbin/selinuxenabled']
+2023-09-10T06:48:32Z DEBUG Process finished, return code=1
+2023-09-10T06:48:32Z DEBUG stdout=
+2023-09-10T06:48:32Z DEBUG stderr=
+2023-09-10T06:48:32Z DEBUG Starting external process
+2023-09-10T06:48:32Z DEBUG args=['/usr/sbin/selinuxenabled']
+2023-09-10T06:48:32Z DEBUG Process finished, return code=1
+2023-09-10T06:48:32Z DEBUG stdout=
+2023-09-10T06:48:32Z DEBUG stderr=
+2023-09-10T06:48:32Z DEBUG Starting external process
+2023-09-10T06:48:32Z DEBUG args=['/usr/bin/certutil', '-d', 'sql:/tmp/.private/root/tmp8rzmjxyk', '-A', '-n', 'CA certificate 1', '-t', 'C,,', '-a', '-f', '/tmp/.private/root/tmp8rzmjxyk/pwdfile.txt']
+2023-09-10T06:48:32Z DEBUG Process finished, return code=0
+2023-09-10T06:48:32Z DEBUG stdout=
+2023-09-10T06:48:32Z DEBUG stderr=
+2023-09-10T06:48:32Z DEBUG failed to find session_cookie in persistent storage for principal 'host/host-01.test-krb1.novalocal@TEST-KRB1.NOVALOCAL'
+2023-09-10T06:48:32Z DEBUG trying https://freeipa-master-01.test-krb1.novalocal/ipa/json
+2023-09-10T06:48:32Z DEBUG Created connection context.rpcclient_140456619077776
+2023-09-10T06:48:32Z DEBUG [try 1]: Forwarding 'schema' to json server 'https://freeipa-master-01.test-krb1.novalocal/ipa/json'
+2023-09-10T06:48:32Z DEBUG New HTTP connection (freeipa-master-01.test-krb1.novalocal)
+2023-09-10T06:48:33Z DEBUG received Set-Cookie (<class 'list'>)'['ipa_session=MagBearerToken=aViukd9V%2bhGyNB6HnqbJaZ6o40l0z4zMbyXoEYCiNGAHCnberFxsiNUy6tmNjalkYX9PXvAHVP1Yq%2fI%2fwCnv0e3p%2fO30znvYamtOWsXWUyT97Los4hopCMESXiGoWDS9PjWlhzlPEXdxC6Mx%2bIAAWYYplXnpcy%2f4KascnLWpDMk1dlKyX%2fQWpU2tGe%2f4JA9IzK%2ftSdtcjHdx1LsH9B9g2J%2fs8PpaboM9qCbSlD%2f04M7dTkC%2bJJ9Kdw3mmp0bk5a5rNviW9gJsZLIlLeKEBIduGVE4Pw6moCyFQwhjR%2f%2fPuljL5NycFnAJNUsABkwJPNDwudME7honj6T80CublcjKw%3d%3d;path=/ipa;httponly;secure;']'
+2023-09-10T06:48:33Z DEBUG storing cookie 'ipa_session=MagBearerToken=aViukd9V%2bhGyNB6HnqbJaZ6o40l0z4zMbyXoEYCiNGAHCnberFxsiNUy6tmNjalkYX9PXvAHVP1Yq%2fI%2fwCnv0e3p%2fO30znvYamtOWsXWUyT97Los4hopCMESXiGoWDS9PjWlhzlPEXdxC6Mx%2bIAAWYYplXnpcy%2f4KascnLWpDMk1dlKyX%2fQWpU2tGe%2f4JA9IzK%2ftSdtcjHdx1LsH9B9g2J%2fs8PpaboM9qCbSlD%2f04M7dTkC%2bJJ9Kdw3mmp0bk5a5rNviW9gJsZLIlLeKEBIduGVE4Pw6moCyFQwhjR%2f%2fPuljL5NycFnAJNUsABkwJPNDwudME7honj6T80CublcjKw%3d%3d;' for principal host/host-01.test-krb1.novalocal@TEST-KRB1.NOVALOCAL
+2023-09-10T06:48:33Z DEBUG Destroyed connection context.rpcclient_140456619077776
+2023-09-10T06:48:33Z DEBUG importing all plugin modules in ipaclient.remote_plugins.schema$17cbda6a...
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.remote_plugins.schema$17cbda6a.plugins
+2023-09-10T06:48:33Z DEBUG importing all plugin modules in ipaclient.plugins...
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.automember
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.automount
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.ca
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.cert
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.certmap
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.certprofile
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.csrgen
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.dns
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.hbacrule
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.hbactest
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.host
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.idrange
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.internal
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.location
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.migration
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.misc
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.otptoken
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.otptoken_yubikey
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.passwd
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.permission
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.rpcclient
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.server
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.service
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.sudorule
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.topology
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.trust
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.user
+2023-09-10T06:48:33Z DEBUG importing plugin module ipaclient.plugins.vault
+2023-09-10T06:48:34Z DEBUG found session_cookie in persistent storage for principal 'host/host-01.test-krb1.novalocal@TEST-KRB1.NOVALOCAL', cookie: 'ipa_session=MagBearerToken=aViukd9V%2bhGyNB6HnqbJaZ6o40l0z4zMbyXoEYCiNGAHCnberFxsiNUy6tmNjalkYX9PXvAHVP1Yq%2fI%2fwCnv0e3p%2fO30znvYamtOWsXWUyT97Los4hopCMESXiGoWDS9PjWlhzlPEXdxC6Mx%2bIAAWYYplXnpcy%2f4KascnLWpDMk1dlKyX%2fQWpU2tGe%2f4JA9IzK%2ftSdtcjHdx1LsH9B9g2J%2fs8PpaboM9qCbSlD%2f04M7dTkC%2bJJ9Kdw3mmp0bk5a5rNviW9gJsZLIlLeKEBIduGVE4Pw6moCyFQwhjR%2f%2fPuljL5NycFnAJNUsABkwJPNDwudME7honj6T80CublcjKw%3d%3d'
+2023-09-10T06:48:34Z DEBUG setting session_cookie into context 'ipa_session=MagBearerToken=aViukd9V%2bhGyNB6HnqbJaZ6o40l0z4zMbyXoEYCiNGAHCnberFxsiNUy6tmNjalkYX9PXvAHVP1Yq%2fI%2fwCnv0e3p%2fO30znvYamtOWsXWUyT97Los4hopCMESXiGoWDS9PjWlhzlPEXdxC6Mx%2bIAAWYYplXnpcy%2f4KascnLWpDMk1dlKyX%2fQWpU2tGe%2f4JA9IzK%2ftSdtcjHdx1LsH9B9g2J%2fs8PpaboM9qCbSlD%2f04M7dTkC%2bJJ9Kdw3mmp0bk5a5rNviW9gJsZLIlLeKEBIduGVE4Pw6moCyFQwhjR%2f%2fPuljL5NycFnAJNUsABkwJPNDwudME7honj6T80CublcjKw%3d%3d;'
+2023-09-10T06:48:34Z DEBUG trying https://freeipa-master-01.test-krb1.novalocal/ipa/session/json
+2023-09-10T06:48:34Z DEBUG Created connection context.rpcclient_140456603357328
+2023-09-10T06:48:34Z DEBUG Try RPC connection
+2023-09-10T06:48:34Z DEBUG [try 1]: Forwarding 'ping' to json server 'https://freeipa-master-01.test-krb1.novalocal/ipa/session/json'
+2023-09-10T06:48:34Z DEBUG New HTTP connection (freeipa-master-01.test-krb1.novalocal)
+2023-09-10T06:48:34Z DEBUG [try 1]: Forwarding 'ca_is_enabled' to json server 'https://freeipa-master-01.test-krb1.novalocal/ipa/session/json'
+2023-09-10T06:48:34Z DEBUG HTTP connection keep-alive (freeipa-master-01.test-krb1.novalocal)
+2023-09-10T06:48:34Z DEBUG [try 1]: Forwarding 'config_show' to json server 'https://freeipa-master-01.test-krb1.novalocal/ipa/session/json'
+2023-09-10T06:48:34Z DEBUG HTTP connection keep-alive (freeipa-master-01.test-krb1.novalocal)
+2023-09-10T06:48:34Z DEBUG Starting external process
+2023-09-10T06:48:34Z DEBUG args=['/usr/bin/certutil', '-d', '/etc/ipa/nssdb', '-N', '-f', '/etc/ipa/nssdb/pwdfile.txt', '-@', '/etc/ipa/nssdb/pwdfile.txt']
+2023-09-10T06:48:34Z DEBUG Process finished, return code=0
+2023-09-10T06:48:34Z DEBUG stdout=
+2023-09-10T06:48:34Z DEBUG stderr=
+2023-09-10T06:48:34Z DEBUG Starting external process
+2023-09-10T06:48:34Z DEBUG args=['/usr/sbin/selinuxenabled']
+2023-09-10T06:48:34Z DEBUG Process finished, return code=1
+2023-09-10T06:48:34Z DEBUG stdout=
+2023-09-10T06:48:34Z DEBUG stderr=
+2023-09-10T06:48:34Z DEBUG Starting external process
+2023-09-10T06:48:34Z DEBUG args=['/usr/sbin/selinuxenabled']
+2023-09-10T06:48:34Z DEBUG Process finished, return code=1
+2023-09-10T06:48:34Z DEBUG stdout=
+2023-09-10T06:48:34Z DEBUG stderr=
+2023-09-10T06:48:34Z DEBUG Starting external process
+2023-09-10T06:48:34Z DEBUG args=['/usr/sbin/selinuxenabled']
+2023-09-10T06:48:34Z DEBUG Process finished, return code=1
+2023-09-10T06:48:34Z DEBUG stdout=
+2023-09-10T06:48:34Z DEBUG stderr=
+2023-09-10T06:48:34Z DEBUG Starting external process
+2023-09-10T06:48:34Z DEBUG args=['/usr/sbin/selinuxenabled']
+2023-09-10T06:48:34Z DEBUG Process finished, return code=1
+2023-09-10T06:48:34Z DEBUG stdout=
+2023-09-10T06:48:34Z DEBUG stderr=
+2023-09-10T06:48:34Z DEBUG Starting external process
+2023-09-10T06:48:34Z DEBUG args=['/usr/sbin/selinuxenabled']
+2023-09-10T06:48:34Z DEBUG Process finished, return code=1
+2023-09-10T06:48:34Z DEBUG stdout=
+2023-09-10T06:48:34Z DEBUG stderr=
+2023-09-10T06:48:34Z DEBUG Adding CA certificates to the IPA NSS database.
+2023-09-10T06:48:34Z DEBUG Starting external process
+2023-09-10T06:48:34Z DEBUG args=['/usr/bin/certutil', '-d', 'sql:/etc/ipa/nssdb', '-A', '-n', 'TEST-KRB1.NOVALOCAL IPA CA', '-t', 'CT,C,C', '-a', '-f', '/etc/ipa/nssdb/pwdfile.txt']
+2023-09-10T06:48:34Z DEBUG Process finished, return code=0
+2023-09-10T06:48:34Z DEBUG stdout=
+2023-09-10T06:48:34Z DEBUG stderr=
+2023-09-10T06:48:34Z DEBUG Starting external process
+2023-09-10T06:48:34Z DEBUG args=['/usr/bin/update-ca-trust']
+2023-09-10T06:48:34Z DEBUG Process finished, return code=0
+2023-09-10T06:48:34Z DEBUG stdout=
+2023-09-10T06:48:34Z DEBUG stderr=
+2023-09-10T06:48:34Z INFO Systemwide CA database updated.
+2023-09-10T06:48:34Z DEBUG found 1 A records for host-01.test-krb1.novalocal.: 172.28.19.96
+2023-09-10T06:48:34Z DEBUG The DNS response does not contain an answer to the question: host-01.test-krb1.novalocal. IN AAAA
+2023-09-10T06:48:34Z DEBUG IP check failed: cannot use loopback IP address 127.0.0.1
+2023-09-10T06:48:34Z DEBUG IP check failed: cannot use loopback IP address ::1
+2023-09-10T06:48:34Z DEBUG IP check successful: 172.28.19.96
+2023-09-10T06:48:34Z DEBUG IP check failed: cannot use link-local IP address fe80::f816:3eff:fe83:f21b%eth0
+2023-09-10T06:48:34Z DEBUG IP check successful: 172.28.19.96
+2023-09-10T06:48:34Z DEBUG IP check failed: cannot use link-local IP address fe80::f816:3eff:fe83:f21b%eth0
+2023-09-10T06:48:34Z DEBUG Searching for an interface of IP address: 172.28.19.96
+2023-09-10T06:48:34Z DEBUG Testing local IP address: 127.0.0.1/255.0.0.0 (interface: lo)
+2023-09-10T06:48:34Z DEBUG Testing local IP address: 172.28.19.96/255.255.255.0 (interface: eth0)
+2023-09-10T06:48:34Z DEBUG Writing nsupdate commands to /etc/ipa/.dns_update.txt:
+2023-09-10T06:48:34Z DEBUG debug
+
+update delete host-01.test-krb1.novalocal. IN A
+show
+send
+
+update delete host-01.test-krb1.novalocal. IN AAAA
+show
+send
+
+update add host-01.test-krb1.novalocal. 1200 IN A 172.28.19.96
+show
+send
+
+2023-09-10T06:48:34Z DEBUG Starting external process
+2023-09-10T06:48:34Z DEBUG args=['/usr/bin/nsupdate', '-g', '/etc/ipa/.dns_update.txt']
+2023-09-10T06:48:34Z DEBUG Process finished, return code=0
+2023-09-10T06:48:34Z DEBUG stdout=Outgoing update query:
+;; ->>HEADER<<- opcode: UPDATE, status: NOERROR, id:      0
+;; flags:; ZONE: 0, PREREQ: 0, UPDATE: 0, ADDITIONAL: 0
+;; UPDATE SECTION:
+host-01.test-krb1.novalocal. 0	ANY	A	
+
+Outgoing update query:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  36442
+;; flags:; QUESTION: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+;; QUESTION SECTION:
+;901936463.sig-freeipa-master-01.test-krb1.novalocal. ANY TKEY
+
+;; ADDITIONAL SECTION:
+901936463.sig-freeipa-master-01.test-krb1.novalocal. 0 ANY TKEY	gss-tsig. 1694328514 1694328514 3 NOERROR 865 YIIDXQYGKwYBBQUCoIIDUTCCA02gDTALBgkqhkiG9xIBAgKiggM6BIID NmCCAzIGCSqGSIb3EgECAgEAboIDITCCAx2gAwIBBaEDAgEOogcDBQAg AAAAo4ICEWGCAg0wggIJoAMCAQWhFRsTVEVTVC1LUkIxLk5PVkFMT0NB TKI3MDWgAwIBAaEuMCwbA0ROUxslZnJlZWlwYS1tYXN0ZXItMDEudGVz dC1rcmIxLm5vdmFsb2NhbKOCAbAwggGsoAMCARKhAwIBAqKCAZ4EggGa gUAhSZ4Zij5Ff1EcS2Q+oJFFFP1aOPe66dvUaTzzm+/pEYr7JvURQbaU 7vtDybHlep/etKQxatzHiEFsK9RtXi/T2mrBJcf4N9nCSWUDnNreEGGe 0RImm4e/u9vSgun2GrxFyRCR2sNTqAOc2g9+bCsofjE0tqpzliQu6VDP YXJyXsWO2JYr/Q5Dx0eJpBdcjDz79Phd7eReFrFqGnx88i609EsgzuiE OzHecCAZoQ0XZsqAcqmaiOdz52hlEaHE5vFyEWcuVID2ULgMU45E+wbR RN/dTOqQ/SetT12dcSqP0mcpLZZ7nDYG6BfYWekO/Sd6cUajktqBxKHS CjC9tFNxrCAyPPEmhbGo6kw77hvP4sQpU9T0DdXjAGO8XrucxrUvC7Lk TDwhyCZSsKDMRNeHZS4leR5MwP9H7sz7v1SJzzDsZDphW585PBwv4Jfz kmWgOzIc/u7+HEadskdijbYT5kIoi8npweS1+1TOD072LFrOGzoVr66n 3PvjmKJh+CKECIPSQALviFkcyCCEvrJKyu4XjzwoEyukgfIwge+gAwIB EqKB5wSB5CoDT+R7Kh6SvBh0qSqPuFR591sfY9C0YriPM33Ir8+vn5AA P6rp5CY/eZp7JxZxHHkBpceYpJ+sIpUEmY6SZ4VCFm0cnf5rf1viCgU5 fKMD1me5wtRuWHgCzAvq4uO2mhelXWnBa5t6ysDWWcB0jqN+Af4k71Uh kCZN+IAChRWMB3Jl95RdzvQG5IX+zaNmFvguVq0YzqpcQSYxPcblEavM nLmqw6bqeN/ynY9CeY7EDvBLlpAmsbS4O/VOecpNKhBqIijMLm6NqHKB a8yThjN9bs2HRBFDbfFvfWyOJY+O5C9wEg== 0
+
+Outgoing update query:
+;; ->>HEADER<<- opcode: UPDATE, status: NOERROR, id:  38971
+;; flags:; ZONE: 1, PREREQ: 0, UPDATE: 1, ADDITIONAL: 1
+;; UPDATE SECTION:
+host-01.test-krb1.novalocal. 0	ANY	A	
+
+;; TSIG PSEUDOSECTION:
+901936463.sig-freeipa-master-01.test-krb1.novalocal. 0 ANY TSIG	gss-tsig. 1694328514 300 28 BAQE//////8AAAAAIRPmfNge7/hPhifvKG9dyw== 38971 NOERROR 0 
+
+Outgoing update query:
+;; ->>HEADER<<- opcode: UPDATE, status: NOERROR, id:      0
+;; flags:; ZONE: 0, PREREQ: 0, UPDATE: 0, ADDITIONAL: 0
+;; UPDATE SECTION:
+host-01.test-krb1.novalocal. 0	ANY	AAAA	
+
+Outgoing update query:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  22965
+;; flags:; QUESTION: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+;; QUESTION SECTION:
+;4075211092.sig-freeipa-master-01.test-krb1.novalocal. ANY TKEY
+
+;; ADDITIONAL SECTION:
+4075211092.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TKEY gss-tsig. 1694328514 1694328514 3 NOERROR 865 YIIDXQYGKwYBBQUCoIIDUTCCA02gDTALBgkqhkiG9xIBAgKiggM6BIID NmCCAzIGCSqGSIb3EgECAgEAboIDITCCAx2gAwIBBaEDAgEOogcDBQAg AAAAo4ICEWGCAg0wggIJoAMCAQWhFRsTVEVTVC1LUkIxLk5PVkFMT0NB TKI3MDWgAwIBAaEuMCwbA0ROUxslZnJlZWlwYS1tYXN0ZXItMDEudGVz dC1rcmIxLm5vdmFsb2NhbKOCAbAwggGsoAMCARKhAwIBAqKCAZ4EggGa gUAhSZ4Zij5Ff1EcS2Q+oJFFFP1aOPe66dvUaTzzm+/pEYr7JvURQbaU 7vtDybHlep/etKQxatzHiEFsK9RtXi/T2mrBJcf4N9nCSWUDnNreEGGe 0RImm4e/u9vSgun2GrxFyRCR2sNTqAOc2g9+bCsofjE0tqpzliQu6VDP YXJyXsWO2JYr/Q5Dx0eJpBdcjDz79Phd7eReFrFqGnx88i609EsgzuiE OzHecCAZoQ0XZsqAcqmaiOdz52hlEaHE5vFyEWcuVID2ULgMU45E+wbR RN/dTOqQ/SetT12dcSqP0mcpLZZ7nDYG6BfYWekO/Sd6cUajktqBxKHS CjC9tFNxrCAyPPEmhbGo6kw77hvP4sQpU9T0DdXjAGO8XrucxrUvC7Lk TDwhyCZSsKDMRNeHZS4leR5MwP9H7sz7v1SJzzDsZDphW585PBwv4Jfz kmWgOzIc/u7+HEadskdijbYT5kIoi8npweS1+1TOD072LFrOGzoVr66n 3PvjmKJh+CKECIPSQALviFkcyCCEvrJKyu4XjzwoEyukgfIwge+gAwIB EqKB5wSB5GPBE/7s4ym2ApKUnIpCr1VKcFX4aNmneTmVPXFQ+ZxUyuef mzNDYvF5VzN3VOpjhiJOuf4NtY6B3BOCUOrSncbqFC++/I7ASAriGCq2 wol1TA7bNLRzSYC3cSvHVHCGkag9Xqy4JimVMzTOYrO4TogwFR0betm5 ntVpVL65yiL7FXeWfubny4VlQa21iBn0lbQmT7lTfrPIAMYzOv0QRw8N OnZFPIH6aZExGc5rRd+UHoUriIybxcI8Khw1b9X2NVHFmkopa89ZPqgf 638DXcK30klxZKKcDXkvGnujDELUA3LdOQ== 0
+
+Outgoing update query:
+;; ->>HEADER<<- opcode: UPDATE, status: NOERROR, id:  37860
+;; flags:; ZONE: 1, PREREQ: 0, UPDATE: 1, ADDITIONAL: 1
+;; UPDATE SECTION:
+host-01.test-krb1.novalocal. 0	ANY	AAAA	
+
+;; TSIG PSEUDOSECTION:
+4075211092.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TSIG gss-tsig. 1694328514 300 28 BAQE//////8AAAAAL657wi68U5K1cIoFsnN71g== 37860 NOERROR 0 
+
+Outgoing update query:
+;; ->>HEADER<<- opcode: UPDATE, status: NOERROR, id:      0
+;; flags:; ZONE: 0, PREREQ: 0, UPDATE: 0, ADDITIONAL: 0
+;; UPDATE SECTION:
+host-01.test-krb1.novalocal. 1200 IN	A	172.28.19.96
+
+Outgoing update query:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  17881
+;; flags:; QUESTION: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+;; QUESTION SECTION:
+;2312896438.sig-freeipa-master-01.test-krb1.novalocal. ANY TKEY
+
+;; ADDITIONAL SECTION:
+2312896438.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TKEY gss-tsig. 1694328514 1694328514 3 NOERROR 865 YIIDXQYGKwYBBQUCoIIDUTCCA02gDTALBgkqhkiG9xIBAgKiggM6BIID NmCCAzIGCSqGSIb3EgECAgEAboIDITCCAx2gAwIBBaEDAgEOogcDBQAg AAAAo4ICEWGCAg0wggIJoAMCAQWhFRsTVEVTVC1LUkIxLk5PVkFMT0NB TKI3MDWgAwIBAaEuMCwbA0ROUxslZnJlZWlwYS1tYXN0ZXItMDEudGVz dC1rcmIxLm5vdmFsb2NhbKOCAbAwggGsoAMCARKhAwIBAqKCAZ4EggGa gUAhSZ4Zij5Ff1EcS2Q+oJFFFP1aOPe66dvUaTzzm+/pEYr7JvURQbaU 7vtDybHlep/etKQxatzHiEFsK9RtXi/T2mrBJcf4N9nCSWUDnNreEGGe 0RImm4e/u9vSgun2GrxFyRCR2sNTqAOc2g9+bCsofjE0tqpzliQu6VDP YXJyXsWO2JYr/Q5Dx0eJpBdcjDz79Phd7eReFrFqGnx88i609EsgzuiE OzHecCAZoQ0XZsqAcqmaiOdz52hlEaHE5vFyEWcuVID2ULgMU45E+wbR RN/dTOqQ/SetT12dcSqP0mcpLZZ7nDYG6BfYWekO/Sd6cUajktqBxKHS CjC9tFNxrCAyPPEmhbGo6kw77hvP4sQpU9T0DdXjAGO8XrucxrUvC7Lk TDwhyCZSsKDMRNeHZS4leR5MwP9H7sz7v1SJzzDsZDphW585PBwv4Jfz kmWgOzIc/u7+HEadskdijbYT5kIoi8npweS1+1TOD072LFrOGzoVr66n 3PvjmKJh+CKECIPSQALviFkcyCCEvrJKyu4XjzwoEyukgfIwge+gAwIB EqKB5wSB5CxYIvs2rd52LlBSn8GN/yUcsRXIoJOsIvNf2gTtTzGU89lO bFesyv6mg3qCrMGJTYvW1CUWFPS+UsOK1UYgV7zMmv2sSEYYXJG0MaXX 2498B1Pd9soLh8tVxY8wGGU7xfXaiuNYrvuO5ZWCQfE8hYsZOwO/jj8J zUVprM31H1k0CwbTmKREMo1eK3IlOgntAKft+eftJIg21hfg2oViD60L +GNaDv+FPfYk2lUc/pWAO2pzbggcSVYMVFgX7iIcD2UqcnqicIPx5e3y kGK1cdsNkw1xkKhaGG850ID8peMEdrysOw== 0
+
+Outgoing update query:
+;; ->>HEADER<<- opcode: UPDATE, status: NOERROR, id:  13474
+;; flags:; ZONE: 1, PREREQ: 0, UPDATE: 1, ADDITIONAL: 1
+;; UPDATE SECTION:
+host-01.test-krb1.novalocal. 1200 IN	A	172.28.19.96
+
+;; TSIG PSEUDOSECTION:
+2312896438.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TSIG gss-tsig. 1694328514 300 28 BAQE//////8AAAAADmTBb8b9wbqCUDgdlbqJKw== 13474 NOERROR 0 
+
+
+2023-09-10T06:48:34Z DEBUG stderr=Reply from SOA query:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  35784
+;; flags: qr rd ra; QUESTION: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+;; QUESTION SECTION:
+;host-01.test-krb1.novalocal.	IN	SOA
+
+Reply from SOA query:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:   4570
+;; flags: qr rd ra; QUESTION: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+;; QUESTION SECTION:
+;test-krb1.novalocal.		IN	SOA
+
+;; ANSWER SECTION:
+test-krb1.novalocal.	86400	IN	SOA	freeipa-master-01.test-krb1.novalocal. hostmaster.test-krb1.novalocal. 1694261989 3600 900 1209600 3600
+
+Found zone name: test-krb1.novalocal
+The master is: freeipa-master-01.test-krb1.novalocal
+start_gssrequest
+Found realm from ticket: TEST-KRB1.NOVALOCAL
+send_gssrequest
+recvmsg reply from GSS-TSIG query
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  36442
+;; flags: qr ra; QUESTION: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+;; QUESTION SECTION:
+;901936463.sig-freeipa-master-01.test-krb1.novalocal. ANY TKEY
+
+;; ANSWER SECTION:
+901936463.sig-freeipa-master-01.test-krb1.novalocal. 0 ANY TKEY	gss-tsig. 1694328514 1694332114 3 NOERROR 186 oYG3MIG0oAMKAQChCwYJKoZIhvcSAQICooGfBIGcYIGZBgkqhkiG9xIB AgICAG+BiTCBhqADAgEFoQMCAQ+iejB4oAMCARKicQRvmvootpfu17R1 TKpCK7AL1d5w6y5K6DSF4e9hJAR8BSrYGXlju8mGs32HGVIwJz7oLORD 2zB5qdHd5tRcYiSwnjF7Qf8f0/YE9gubl5ST0IDWb5KIsoFTGQ03uGH1 feNpOhwRWN/rIvTn2QIupxu6 0
+
+;; TSIG PSEUDOSECTION:
+901936463.sig-freeipa-master-01.test-krb1.novalocal. 0 ANY TSIG	gss-tsig. 1694328514 300 28 BAQF//////8AAAAADXRth+dO9p4lB7uzxUX1+w== 36442 NOERROR 0 
+
+Sending update to 172.28.19.229#53
+
+Reply from update query:
+;; ->>HEADER<<- opcode: UPDATE, status: NOERROR, id:  38971
+;; flags: qr; ZONE: 1, PREREQ: 0, UPDATE: 0, ADDITIONAL: 1
+;; ZONE SECTION:
+;test-krb1.novalocal.		IN	SOA
+
+;; TSIG PSEUDOSECTION:
+901936463.sig-freeipa-master-01.test-krb1.novalocal. 0 ANY TSIG	gss-tsig. 1694328514 300 28 BAQF//////8AAAAADXRtiKzsLdbY+xuBYzZwyQ== 38971 NOERROR 0 
+
+Reply from SOA query:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:   9416
+;; flags: qr rd ra; QUESTION: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+;; QUESTION SECTION:
+;host-01.test-krb1.novalocal.	IN	SOA
+
+Reply from SOA query:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  26558
+;; flags: qr rd ra; QUESTION: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+;; QUESTION SECTION:
+;test-krb1.novalocal.		IN	SOA
+
+;; ANSWER SECTION:
+test-krb1.novalocal.	7199	IN	SOA	freeipa-master-01.test-krb1.novalocal. hostmaster.test-krb1.novalocal. 1694261989 3600 900 1209600 3600
+
+Found zone name: test-krb1.novalocal
+The master is: freeipa-master-01.test-krb1.novalocal
+start_gssrequest
+send_gssrequest
+recvmsg reply from GSS-TSIG query
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  22965
+;; flags: qr ra; QUESTION: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+;; QUESTION SECTION:
+;4075211092.sig-freeipa-master-01.test-krb1.novalocal. ANY TKEY
+
+;; ANSWER SECTION:
+4075211092.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TKEY gss-tsig. 1694328514 1694332114 3 NOERROR 186 oYG3MIG0oAMKAQChCwYJKoZIhvcSAQICooGfBIGcYIGZBgkqhkiG9xIB AgICAG+BiTCBhqADAgEFoQMCAQ+iejB4oAMCARKicQRvlsgEh3b3NZ+o ujgGr6Yav8sG2nsc+7xDKIgZc2nqvrNXAZaotqyHVuaAlGIEfn0biFQF nxUS7SlQw+T1LjdeRtNPKrttZ5maEidVX1+Ovhnii44Lzqzm/AI3ryVE naxkWrkriMdg3Sl4Hnl5Qbmy 0
+
+;; TSIG PSEUDOSECTION:
+4075211092.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TSIG gss-tsig. 1694328514 300 28 BAQF//////8AAAAAPlfIzO12Y8dvVnSb/n7HcQ== 22965 NOERROR 0 
+
+Sending update to 172.28.19.229#53
+
+Reply from update query:
+;; ->>HEADER<<- opcode: UPDATE, status: NOERROR, id:  37860
+;; flags: qr; ZONE: 1, PREREQ: 0, UPDATE: 0, ADDITIONAL: 1
+;; ZONE SECTION:
+;test-krb1.novalocal.		IN	SOA
+
+;; TSIG PSEUDOSECTION:
+4075211092.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TSIG gss-tsig. 1694328514 300 28 BAQF//////8AAAAAPlfIzdACdWif0WWOwG6hfg== 37860 NOERROR 0 
+
+Reply from SOA query:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  33393
+;; flags: qr rd ra; QUESTION: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+;; QUESTION SECTION:
+;host-01.test-krb1.novalocal.	IN	SOA
+
+Reply from SOA query:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  62303
+;; flags: qr rd ra; QUESTION: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+;; QUESTION SECTION:
+;test-krb1.novalocal.		IN	SOA
+
+;; ANSWER SECTION:
+test-krb1.novalocal.	7199	IN	SOA	freeipa-master-01.test-krb1.novalocal. hostmaster.test-krb1.novalocal. 1694261989 3600 900 1209600 3600
+
+Found zone name: test-krb1.novalocal
+The master is: freeipa-master-01.test-krb1.novalocal
+start_gssrequest
+send_gssrequest
+recvmsg reply from GSS-TSIG query
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  17881
+;; flags: qr ra; QUESTION: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+;; QUESTION SECTION:
+;2312896438.sig-freeipa-master-01.test-krb1.novalocal. ANY TKEY
+
+;; ANSWER SECTION:
+2312896438.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TKEY gss-tsig. 1694328514 1694332114 3 NOERROR 186 oYG3MIG0oAMKAQChCwYJKoZIhvcSAQICooGfBIGcYIGZBgkqhkiG9xIB AgICAG+BiTCBhqADAgEFoQMCAQ+iejB4oAMCARKicQRvvGDllNikhm87 DxpS+JD/cRaHzHho65k42vZO4jvhnY9uMhpoYA1e8fkqPoF4kixX4Gcr W/2GG5nifpsjG1nv7wWEo6BBiI+4OshPGatNMlyNMdMPWQHAUTffqQr9 IXVQ9C8LN0Xw0xDRiTpQbq+X 0
+
+;; TSIG PSEUDOSECTION:
+2312896438.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TSIG gss-tsig. 1694328514 300 28 BAQF//////8AAAAAM+PDyt8gFsiNvqRRSUIBnA== 17881 NOERROR 0 
+
+Sending update to 172.28.19.229#53
+
+Reply from update query:
+;; ->>HEADER<<- opcode: UPDATE, status: NOERROR, id:  13474
+;; flags: qr; ZONE: 1, PREREQ: 0, UPDATE: 0, ADDITIONAL: 1
+;; ZONE SECTION:
+;test-krb1.novalocal.		IN	SOA
+
+;; TSIG PSEUDOSECTION:
+2312896438.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TSIG gss-tsig. 1694328514 300 28 BAQF//////8AAAAAM+PDyxZ67paZUhpOX5nTCQ== 13474 NOERROR 0 
+
+
+2023-09-10T06:48:34Z DEBUG DNS resolver: Query: host-01.test-krb1.novalocal IN A
+2023-09-10T06:48:34Z DEBUG DNS resolver: Query: host-01.test-krb1.novalocal IN AAAA
+2023-09-10T06:48:34Z DEBUG DNS resolver: No record.
+2023-09-10T06:48:34Z DEBUG DNS resolver: Query: 96.19.28.172.in-addr.arpa. IN PTR
+2023-09-10T06:48:35Z DEBUG Starting external process
+2023-09-10T06:48:35Z DEBUG args=['/sbin/systemctl', 'try-restart', 'certmonger.service']
+2023-09-10T06:48:35Z DEBUG Process finished, return code=0
+2023-09-10T06:48:35Z DEBUG stdout=
+2023-09-10T06:48:35Z DEBUG stderr=
+2023-09-10T06:48:35Z DEBUG Starting external process
+2023-09-10T06:48:35Z DEBUG args=['/sbin/systemctl', 'is-active', 'certmonger.service']
+2023-09-10T06:48:35Z DEBUG Process finished, return code=3
+2023-09-10T06:48:35Z DEBUG stdout=inactive
+
+2023-09-10T06:48:35Z DEBUG stderr=
+2023-09-10T06:48:35Z DEBUG Restart of certmonger.service complete
+2023-09-10T06:48:35Z INFO Adding SSH public key from /etc/openssh/ssh_host_rsa_key.pub
+2023-09-10T06:48:35Z INFO Adding SSH public key from /etc/openssh/ssh_host_ecdsa_key.pub
+2023-09-10T06:48:35Z INFO Adding SSH public key from /etc/openssh/ssh_host_ed25519_key.pub
+2023-09-10T06:48:35Z INFO Adding SSH public key from /etc/openssh/ssh_host_dsa_key.pub
+2023-09-10T06:48:35Z DEBUG [try 1]: Forwarding 'host_mod' to json server 'https://freeipa-master-01.test-krb1.novalocal/ipa/session/json'
+2023-09-10T06:48:35Z DEBUG HTTP connection keep-alive (freeipa-master-01.test-krb1.novalocal)
+2023-09-10T06:48:35Z DEBUG Writing nsupdate commands to /etc/ipa/.dns_update.txt:
+2023-09-10T06:48:35Z DEBUG debug
+update delete host-01.test-krb1.novalocal. IN SSHFP
+show
+send
+update add host-01.test-krb1.novalocal. 1200 IN SSHFP 1 1 EB572651A24A523218F382B7A81BDABE6164ED72
+update add host-01.test-krb1.novalocal. 1200 IN SSHFP 1 2 9078E0F16844B392B32418D371D8BE15DB1C3474A9F3FBD59D18ED80153C520E
+update add host-01.test-krb1.novalocal. 1200 IN SSHFP 3 1 06B6B5B3EA3B8CC8CC18510B3E14F84F80635B93
+update add host-01.test-krb1.novalocal. 1200 IN SSHFP 3 2 39480EFA2B20139FBD4C06A457AF81FD534F2D3E8213FAB01301944140E78E26
+update add host-01.test-krb1.novalocal. 1200 IN SSHFP 4 1 1BCDF5FD15AB8CEE6A473BAC796E14A78579A00F
+update add host-01.test-krb1.novalocal. 1200 IN SSHFP 4 2 C6B45612559CA97C023663F877682405B3BA41B0B01705725DC8ADFE34840B06
+update add host-01.test-krb1.novalocal. 1200 IN SSHFP 2 1 1EE196323F49F11D089824B48C0A5910F29FDE9F
+update add host-01.test-krb1.novalocal. 1200 IN SSHFP 2 2 6C4F89C44BEACB84147747A4DB8716D268EC298AD43C389CC195D8DA65365D11
+show
+send
+
+2023-09-10T06:48:35Z DEBUG Starting external process
+2023-09-10T06:48:35Z DEBUG args=['/usr/bin/nsupdate', '-g', '/etc/ipa/.dns_update.txt']
+2023-09-10T06:48:35Z DEBUG Process finished, return code=0
+2023-09-10T06:48:35Z DEBUG stdout=Outgoing update query:
+;; ->>HEADER<<- opcode: UPDATE, status: NOERROR, id:      0
+;; flags:; ZONE: 0, PREREQ: 0, UPDATE: 0, ADDITIONAL: 0
+;; UPDATE SECTION:
+host-01.test-krb1.novalocal. 0	ANY	SSHFP	
+
+Outgoing update query:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  27723
+;; flags:; QUESTION: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+;; QUESTION SECTION:
+;1238688836.sig-freeipa-master-01.test-krb1.novalocal. ANY TKEY
+
+;; ADDITIONAL SECTION:
+1238688836.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TKEY gss-tsig. 1694328515 1694328515 3 NOERROR 865 YIIDXQYGKwYBBQUCoIIDUTCCA02gDTALBgkqhkiG9xIBAgKiggM6BIID NmCCAzIGCSqGSIb3EgECAgEAboIDITCCAx2gAwIBBaEDAgEOogcDBQAg AAAAo4ICEWGCAg0wggIJoAMCAQWhFRsTVEVTVC1LUkIxLk5PVkFMT0NB TKI3MDWgAwIBAaEuMCwbA0ROUxslZnJlZWlwYS1tYXN0ZXItMDEudGVz dC1rcmIxLm5vdmFsb2NhbKOCAbAwggGsoAMCARKhAwIBAqKCAZ4EggGa gUAhSZ4Zij5Ff1EcS2Q+oJFFFP1aOPe66dvUaTzzm+/pEYr7JvURQbaU 7vtDybHlep/etKQxatzHiEFsK9RtXi/T2mrBJcf4N9nCSWUDnNreEGGe 0RImm4e/u9vSgun2GrxFyRCR2sNTqAOc2g9+bCsofjE0tqpzliQu6VDP YXJyXsWO2JYr/Q5Dx0eJpBdcjDz79Phd7eReFrFqGnx88i609EsgzuiE OzHecCAZoQ0XZsqAcqmaiOdz52hlEaHE5vFyEWcuVID2ULgMU45E+wbR RN/dTOqQ/SetT12dcSqP0mcpLZZ7nDYG6BfYWekO/Sd6cUajktqBxKHS CjC9tFNxrCAyPPEmhbGo6kw77hvP4sQpU9T0DdXjAGO8XrucxrUvC7Lk TDwhyCZSsKDMRNeHZS4leR5MwP9H7sz7v1SJzzDsZDphW585PBwv4Jfz kmWgOzIc/u7+HEadskdijbYT5kIoi8npweS1+1TOD072LFrOGzoVr66n 3PvjmKJh+CKECIPSQALviFkcyCCEvrJKyu4XjzwoEyukgfIwge+gAwIB EqKB5wSB5HWS5twGrxUOqtCoxSVMcaTRbsmtpive06rgakKQihphBrZJ UDX38tO9uLNjM1OBxuWlcL6ucqbq/tjUyDqcZkPYhflsWw9GiNfbTHvI bKEWbRYRcZaUrRHaXGzle4V70DQa8bXGWNOrbE8Lz1X7dx0rfQ9EYHuX Ux9EbA9A60vMb0+LGdLhAzfdMQ3FFG3zy93PJwnlsSJX1p/4jL9un8uz +KWbMcAoFHhkGmklJgzCbvsyZUoY4XIzCTyImd10v85Tny0MJC2iM26x qSTrDVG7Ng0nb0qNCDTgoiMPBDKxEHvQUg== 0
+
+Outgoing update query:
+;; ->>HEADER<<- opcode: UPDATE, status: NOERROR, id:  38803
+;; flags:; ZONE: 1, PREREQ: 0, UPDATE: 1, ADDITIONAL: 1
+;; UPDATE SECTION:
+host-01.test-krb1.novalocal. 0	ANY	SSHFP	
+
+;; TSIG PSEUDOSECTION:
+1238688836.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TSIG gss-tsig. 1694328515 300 28 BAQE//////8AAAAAAwCIJxolhp0MnegO9dcDXA== 38803 NOERROR 0 
+
+Outgoing update query:
+;; ->>HEADER<<- opcode: UPDATE, status: NOERROR, id:      0
+;; flags:; ZONE: 0, PREREQ: 0, UPDATE: 0, ADDITIONAL: 0
+;; UPDATE SECTION:
+host-01.test-krb1.novalocal. 1200 IN	SSHFP	1 1 EB572651A24A523218F382B7A81BDABE6164ED72
+host-01.test-krb1.novalocal. 1200 IN	SSHFP	1 2 9078E0F16844B392B32418D371D8BE15DB1C3474A9F3FBD59D18ED80 153C520E
+host-01.test-krb1.novalocal. 1200 IN	SSHFP	3 1 06B6B5B3EA3B8CC8CC18510B3E14F84F80635B93
+host-01.test-krb1.novalocal. 1200 IN	SSHFP	3 2 39480EFA2B20139FBD4C06A457AF81FD534F2D3E8213FAB013019441 40E78E26
+host-01.test-krb1.novalocal. 1200 IN	SSHFP	4 1 1BCDF5FD15AB8CEE6A473BAC796E14A78579A00F
+host-01.test-krb1.novalocal. 1200 IN	SSHFP	4 2 C6B45612559CA97C023663F877682405B3BA41B0B01705725DC8ADFE 34840B06
+host-01.test-krb1.novalocal. 1200 IN	SSHFP	2 1 1EE196323F49F11D089824B48C0A5910F29FDE9F
+host-01.test-krb1.novalocal. 1200 IN	SSHFP	2 2 6C4F89C44BEACB84147747A4DB8716D268EC298AD43C389CC195D8DA 65365D11
+
+Outgoing update query:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  46248
+;; flags:; QUESTION: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+;; QUESTION SECTION:
+;2531164383.sig-freeipa-master-01.test-krb1.novalocal. ANY TKEY
+
+;; ADDITIONAL SECTION:
+2531164383.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TKEY gss-tsig. 1694328515 1694328515 3 NOERROR 865 YIIDXQYGKwYBBQUCoIIDUTCCA02gDTALBgkqhkiG9xIBAgKiggM6BIID NmCCAzIGCSqGSIb3EgECAgEAboIDITCCAx2gAwIBBaEDAgEOogcDBQAg AAAAo4ICEWGCAg0wggIJoAMCAQWhFRsTVEVTVC1LUkIxLk5PVkFMT0NB TKI3MDWgAwIBAaEuMCwbA0ROUxslZnJlZWlwYS1tYXN0ZXItMDEudGVz dC1rcmIxLm5vdmFsb2NhbKOCAbAwggGsoAMCARKhAwIBAqKCAZ4EggGa gUAhSZ4Zij5Ff1EcS2Q+oJFFFP1aOPe66dvUaTzzm+/pEYr7JvURQbaU 7vtDybHlep/etKQxatzHiEFsK9RtXi/T2mrBJcf4N9nCSWUDnNreEGGe 0RImm4e/u9vSgun2GrxFyRCR2sNTqAOc2g9+bCsofjE0tqpzliQu6VDP YXJyXsWO2JYr/Q5Dx0eJpBdcjDz79Phd7eReFrFqGnx88i609EsgzuiE OzHecCAZoQ0XZsqAcqmaiOdz52hlEaHE5vFyEWcuVID2ULgMU45E+wbR RN/dTOqQ/SetT12dcSqP0mcpLZZ7nDYG6BfYWekO/Sd6cUajktqBxKHS CjC9tFNxrCAyPPEmhbGo6kw77hvP4sQpU9T0DdXjAGO8XrucxrUvC7Lk TDwhyCZSsKDMRNeHZS4leR5MwP9H7sz7v1SJzzDsZDphW585PBwv4Jfz kmWgOzIc/u7+HEadskdijbYT5kIoi8npweS1+1TOD072LFrOGzoVr66n 3PvjmKJh+CKECIPSQALviFkcyCCEvrJKyu4XjzwoEyukgfIwge+gAwIB EqKB5wSB5C+fMY5bWS9GyF+CT4Vmz1xr/3OsfAFvMsOM1pd4Gqcqx6FT S6FGO2gAiSea+2Fn6sKW1TblH/THmvmybhSMMX9KNiF25TEumivl2YUl fn+ew9LZAUcX6T//OUmfDTJUnKk4W1eRePKONTlugRp/VtJJz9K7pNqS 3YcdsDyOXXZjS+TQzF8NRCD6+1sb64JCcFZevmkAXcHDk9pj9Rc7Nl/E fO/Rr8wpbT7lC/07l/0cdoaxcbCNHauv/uHGNSHh1BPTesmZZHuaznTh K5eYWKNln+lsIgvss7jP504bejYO5lS0fQ== 0
+
+Outgoing update query:
+;; ->>HEADER<<- opcode: UPDATE, status: NOERROR, id:   1017
+;; flags:; ZONE: 1, PREREQ: 0, UPDATE: 8, ADDITIONAL: 1
+;; UPDATE SECTION:
+host-01.test-krb1.novalocal. 1200 IN	SSHFP	1 1 EB572651A24A523218F382B7A81BDABE6164ED72
+host-01.test-krb1.novalocal. 1200 IN	SSHFP	1 2 9078E0F16844B392B32418D371D8BE15DB1C3474A9F3FBD59D18ED80 153C520E
+host-01.test-krb1.novalocal. 1200 IN	SSHFP	3 1 06B6B5B3EA3B8CC8CC18510B3E14F84F80635B93
+host-01.test-krb1.novalocal. 1200 IN	SSHFP	3 2 39480EFA2B20139FBD4C06A457AF81FD534F2D3E8213FAB013019441 40E78E26
+host-01.test-krb1.novalocal. 1200 IN	SSHFP	4 1 1BCDF5FD15AB8CEE6A473BAC796E14A78579A00F
+host-01.test-krb1.novalocal. 1200 IN	SSHFP	4 2 C6B45612559CA97C023663F877682405B3BA41B0B01705725DC8ADFE 34840B06
+host-01.test-krb1.novalocal. 1200 IN	SSHFP	2 1 1EE196323F49F11D089824B48C0A5910F29FDE9F
+host-01.test-krb1.novalocal. 1200 IN	SSHFP	2 2 6C4F89C44BEACB84147747A4DB8716D268EC298AD43C389CC195D8DA 65365D11
+
+;; TSIG PSEUDOSECTION:
+2531164383.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TSIG gss-tsig. 1694328515 300 28 BAQE//////8AAAAACMBHajfZ4pXhXMSrKODfqQ== 1017 NOERROR 0 
+
+
+2023-09-10T06:48:35Z DEBUG stderr=Reply from SOA query:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  26999
+;; flags: qr rd ra; QUESTION: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+;; QUESTION SECTION:
+;host-01.test-krb1.novalocal.	IN	SOA
+
+Reply from SOA query:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  22942
+;; flags: qr rd ra; QUESTION: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+;; QUESTION SECTION:
+;test-krb1.novalocal.		IN	SOA
+
+;; ANSWER SECTION:
+test-krb1.novalocal.	7199	IN	SOA	freeipa-master-01.test-krb1.novalocal. hostmaster.test-krb1.novalocal. 1694261989 3600 900 1209600 3600
+
+Found zone name: test-krb1.novalocal
+The master is: freeipa-master-01.test-krb1.novalocal
+start_gssrequest
+Found realm from ticket: TEST-KRB1.NOVALOCAL
+send_gssrequest
+recvmsg reply from GSS-TSIG query
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  27723
+;; flags: qr ra; QUESTION: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+;; QUESTION SECTION:
+;1238688836.sig-freeipa-master-01.test-krb1.novalocal. ANY TKEY
+
+;; ANSWER SECTION:
+1238688836.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TKEY gss-tsig. 1694328515 1694332115 3 NOERROR 186 oYG3MIG0oAMKAQChCwYJKoZIhvcSAQICooGfBIGcYIGZBgkqhkiG9xIB AgICAG+BiTCBhqADAgEFoQMCAQ+iejB4oAMCARKicQRvjtugC66epdq6 nH5fQrVdLki25pZaNtEUsNM229cnR4tL1lJbyd8c8lOEIephqyyonUFT t/5Go1yXAHHCLWhjjXw/loXd6x+lb8g9yE097Z6JrWYu2F5xDEMWcDev t8miaXYD5mOKlkB5gt2DX5PP 0
+
+;; TSIG PSEUDOSECTION:
+1238688836.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TSIG gss-tsig. 1694328515 300 28 BAQF//////8AAAAABl91ezrP5pmLlfCqsJvi+A== 27723 NOERROR 0 
+
+Sending update to 172.28.19.229#53
+
+Reply from update query:
+;; ->>HEADER<<- opcode: UPDATE, status: NOERROR, id:  38803
+;; flags: qr; ZONE: 1, PREREQ: 0, UPDATE: 0, ADDITIONAL: 1
+;; ZONE SECTION:
+;test-krb1.novalocal.		IN	SOA
+
+;; TSIG PSEUDOSECTION:
+1238688836.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TSIG gss-tsig. 1694328515 300 28 BAQF//////8AAAAABl91fISW5qo4V5kJukoo2g== 38803 NOERROR 0 
+
+Reply from SOA query:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  36042
+;; flags: qr rd ra; QUESTION: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+;; QUESTION SECTION:
+;host-01.test-krb1.novalocal.	IN	SOA
+
+Reply from SOA query:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  39008
+;; flags: qr rd ra; QUESTION: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+;; QUESTION SECTION:
+;test-krb1.novalocal.		IN	SOA
+
+;; ANSWER SECTION:
+test-krb1.novalocal.	7199	IN	SOA	freeipa-master-01.test-krb1.novalocal. hostmaster.test-krb1.novalocal. 1694261989 3600 900 1209600 3600
+
+Found zone name: test-krb1.novalocal
+The master is: freeipa-master-01.test-krb1.novalocal
+start_gssrequest
+send_gssrequest
+recvmsg reply from GSS-TSIG query
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id:  46248
+;; flags: qr ra; QUESTION: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+;; QUESTION SECTION:
+;2531164383.sig-freeipa-master-01.test-krb1.novalocal. ANY TKEY
+
+;; ANSWER SECTION:
+2531164383.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TKEY gss-tsig. 1694328515 1694332115 3 NOERROR 186 oYG3MIG0oAMKAQChCwYJKoZIhvcSAQICooGfBIGcYIGZBgkqhkiG9xIB AgICAG+BiTCBhqADAgEFoQMCAQ+iejB4oAMCARKicQRvkjl5uB092w6/ EDv/gmBKDAADdZ6s24JxfeA4nrgrPwzoW2blX7HKLSgry0D7/j8fwZR9 hIgcPqpOZM9PgE/F170DOQM6Qj+rRE5F7F+IAzGmnLqAO3ZIdqVT76vw 8gwqNt7euahUtnZfhxmKYy4+ 0
+
+;; TSIG PSEUDOSECTION:
+2531164383.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TSIG gss-tsig. 1694328515 300 28 BAQF//////8AAAAAE5L1Pqa1h3BYt9xyu6ibnQ== 46248 NOERROR 0 
+
+Sending update to 172.28.19.229#53
+
+Reply from update query:
+;; ->>HEADER<<- opcode: UPDATE, status: NOERROR, id:   1017
+;; flags: qr; ZONE: 1, PREREQ: 0, UPDATE: 0, ADDITIONAL: 1
+;; ZONE SECTION:
+;test-krb1.novalocal.		IN	SOA
+
+;; TSIG PSEUDOSECTION:
+2531164383.sig-freeipa-master-01.test-krb1.novalocal. 0	ANY TSIG gss-tsig. 1694328515 300 28 BAQF//////8AAAAAE5L1PwtnNvo4HRX+oN89vw== 1017 NOERROR 0 
+
+
+2023-09-10T06:48:35Z DEBUG Starting external process
+2023-09-10T06:48:35Z DEBUG args=['/sbin/systemctl', 'list-unit-files', '--full']
+2023-09-10T06:48:35Z DEBUG Process finished, return code=0
+2023-09-10T06:48:35Z DEBUG stdout=UNIT FILE                              STATE           VENDOR PRESET
+proc-sys-fs-binfmt_misc.automount      static          -            
+-.mount                                generated       -            
+boot.mount                             generated       -            
+dev-hugepages.mount                    static          -            
+dev-mqueue.mount                       static          -            
+proc-fs-nfsd.mount                     static          -            
+proc-sys-fs-binfmt_misc.mount          disabled        disabled     
+sys-fs-fuse-connections.mount          static          -            
+sys-kernel-config.mount                static          -            
+sys-kernel-debug.mount                 static          -            
+sys-kernel-tracing.mount               static          -            
+tmp-.private-root.mount                generated       -            
+tmp.mount                              generated       -            
+var-lib-nfs-rpc_pipefs.mount           static          -            
+var-lock.mount                         static          -            
+var-run.mount                          static          -            
+altlinux-libresolv.path                disabled        disabled     
+altlinux-openresolv.path               disabled        enabled      
+altlinux-simpleresolv.path             disabled        disabled     
+cups.path                              disabled        enabled      
+systemd-ask-password-console.path      static          -            
+systemd-ask-password-plymouth.path     static          -            
+systemd-ask-password-wall.path         static          -            
+session-381.scope                      transient       -            
+acpid.service                          enabled         enabled      
+alt-checksum.service                   enabled         disabled     
+alteratord.service                     enabled         disabled     
+altlinux-clock-setup.service           disabled        disabled     
+altlinux-first_time.service            static          -            
+altlinux-libresolv.service             static          -            
+altlinux-openresolv.service            static          -            
+altlinux-simpleresolv.service          static          -            
+anacron.service                        disabled        disabled     
+auditd.service                         enabled         enabled      
+auth-rpcgss-module.service             static          -            
+autovt@.service                        alias           -            
+blk-availability.service               disabled        disabled     
+blkmapd.service                        alias           -            
+certmonger.service                     disabled        disabled     
+cgconfig.service                       disabled        disabled     
+cgred.service                          disabled        disabled     
+chrony-wait.service                    disabled        disabled     
+chronyd.service                        enabled         enabled      
+clock.service                          alias           -            
+cloud-config.service                   enabled         disabled     
+cloud-final.service                    enabled         disabled     
+cloud-init-local.service               enabled         disabled     
+cloud-init.service                     enabled         disabled     
+colord.service                         static          -            
+console-getty.service                  disabled        disabled     
+consolesaver.service                   generated       -            
+container-getty@.service               static          -            
+crond.service                          enabled         enabled      
+cryptdisks.functions.service           generated       -            
+cups-browsed.service                   disabled        disabled     
+cups-lpd@.service                      static          -            
+cups.service                           disabled        enabled      
+daemontools.service                    enabled         disabled     
+dbus-org.freedesktop.hostname1.service alias           -            
+dbus-org.freedesktop.locale1.service   alias           -            
+dbus-org.freedesktop.login1.service    alias           -            
+dbus-org.freedesktop.network1.service  alias           -            
+dbus-org.freedesktop.resolve1.service  alias           -            
+dbus-org.freedesktop.timedate1.service alias           -            
+dbus.service                           static          -            
+debug-shell.service                    disabled        disabled     
+dm-event.service                       static          -            
+emergency.service                      static          -            
+ethtool.service                        generated       -            
+fbsetfont.service                      masked          disabled     
+fstrim.service                         static          -            
+getty@.service                         enabled         enabled      
+gpm.service                            disabled        enabled      
+gssd.service                           alias           -            
+halt.service                           alias           -            
+idmapd.service                         alias           -            
+ifplugd.service                        generated       -            
+initrd-cleanup.service                 static          -            
+initrd-parse-etc.service               static          -            
+initrd-switch-root.service             static          -            
+initrd-udevadm-cleanup-db.service      static          -            
+integalert.service                     disabled        enabled      
+integrity-notifier.service             disabled        disabled     
+integrity-scanner.service              disabled        disabled     
+iptables.service                       disabled        disabled     
+irqbalance.service                     disabled        disabled     
+keytable.service                       masked          disabled     
+killall.service                        masked          disabled     
+kmod-static-nodes.service              static          -            
+ldconfig.service                       static          -            
+lm_sensors.service                     disabled        disabled     
+local.service                          alias           -            
+lvm2-lvmpolld.service                  static          -            
+lvm2-monitor.service                   disabled        enabled      
+lvm2-pvscan@.service                   static          -            
+mdadm-grow-continue@.service           static          -            
+mdadm-last-resort@.service             static          -            
+mdadm.service                          alias           -            
+mdmon@.service                         static          -            
+mdmonitor.service                      static          -            
+messagebus.service                     alias           -            
+modprobe@.service                      static          -            
+multipathd.service                     disabled        enabled      
+netfs.service                          masked          disabled     
+netplan-wpa@.service                   static          -            
+nfs-blkmap.service                     disabled        disabled     
+nfs-idmapd.service                     static          -            
+nfs-mountd.service                     static          -            
+nfs-server.service                     disabled        disabled     
+nfs-utils.service                      static          -            
+nfs.service                            alias           -            
+nfslock.service                        alias           -            
+nscd.service                           enabled         disabled     
+nslcd.service                          enabled         disabled     
+oddjobd.service                        disabled        disabled     
+osec.service                           static          -            
+pam_namespace.service                  static          -            
+plymouth-halt.service                  static          -            
+plymouth-kexec.service                 static          -            
+plymouth-poweroff.service              static          -            
+plymouth-quit-wait.service             static          -            
+plymouth-quit.service                  static          -            
+plymouth-read-write.service            static          -            
+plymouth-reboot.service                static          -            
+plymouth-start.service                 static          -            
+plymouth-switch-root.service           static          -            
+plymouth.service                       alias           -            
+polkit.service                         static          -            
+postfix.service                        enabled         disabled     
+qemu-guest-agent.service               enabled         enabled      
+quotaon.service                        static          -            
+random.service                         alias           -            
+rawdevices.service                     generated       -            
+rc-local.service                       static          -            
+rdisc.service                          disabled        disabled     
+reboot.service                         alias           -            
+rescue.service                         static          -            
+rpc-gssd.service                       static          -            
+rpc-statd-notify.service               static          -            
+rpc-statd.service                      static          -            
+rpc-svcgssd.service                    static          -            
+rpcbind.service                        disabled        disabled     
+runit.service                          disabled        disabled     
+secdeltab.service                      enabled         disabled     
+serial-getty@.service                  indirect        disabled     
+single.service                         masked          disabled     
+smartd.service                         disabled        enabled      
+sshd.service                           enabled         enabled      
+sssd-nss.service                       indirect        disabled     
+sssd-pac.service                       indirect        disabled     
+sssd-pam.service                       indirect        disabled     
+sssd-ssh.service                       indirect        disabled     
+sssd-sudo.service                      indirect        disabled     
+sssd.service                           enabled         disabled     
+svcgssd.service                        alias           -            
+sysstat-collect.service                static          -            
+sysstat-summary.service                static          -            
+sysstat.service                        disabled        enabled      
+system-update-cleanup.service          static          -            
+systemd-ask-password-console.service   static          -            
+systemd-ask-password-plymouth.service  static          -            
+systemd-ask-password-wall.service      static          -            
+systemd-backlight@.service             static          -            
+systemd-binfmt.service                 static          -            
+systemd-bless-boot.service             static          -            
+systemd-boot-check-no-failures.service disabled        disabled     
+systemd-boot-system-token.service      static          -            
+systemd-exit.service                   static          -            
+systemd-firstboot.service              static          -            
+systemd-fsck-root.service              enabled-runtime disabled     
+systemd-fsck@.service                  static          -            
+systemd-halt.service                   static          -            
+systemd-hibernate-resume@.service      static          -            
+systemd-hibernate.service              static          -            
+systemd-hostnamed.service              static          -            
+systemd-hwdb-update.service            static          -            
+systemd-hybrid-sleep.service           static          -            
+systemd-initctl.service                static          -            
+systemd-journal-catalog-update.service static          -            
+systemd-journal-flush.service          static          -            
+systemd-journald.service               static          -            
+systemd-journald@.service              static          -            
+systemd-kexec.service                  static          -            
+systemd-localed.service                static          -            
+systemd-logind.service                 static          -            
+systemd-machine-id-commit.service      static          -            
+systemd-modules-load.service           static          -            
+systemd-network-generator.service      disabled        disabled     
+systemd-networkd-wait-online.service   enabled         disabled     
+systemd-networkd.service               enabled         enabled      
+systemd-poweroff.service               static          -            
+systemd-pstore.service                 enabled         enabled      
+systemd-quotacheck.service             static          -            
+systemd-random-seed.service            static          -            
+systemd-reboot.service                 static          -            
+systemd-remount-fs.service             enabled-runtime disabled     
+systemd-repart.service                 static          -            
+systemd-resolved.service               enabled         enabled      
+systemd-rfkill.service                 static          -            
+systemd-suspend-then-hibernate.service static          -            
+systemd-suspend.service                static          -            
+systemd-sysctl.service                 static          -            
+systemd-timedated.service              static          -            
+systemd-tmpfiles-clean.service         static          -            
+systemd-tmpfiles-setup-dev.service     static          -            
+systemd-tmpfiles-setup.service         static          -            
+systemd-udev-settle.service            static          -            
+systemd-udev-trigger.service           static          -            
+systemd-udevd.service                  static          -            
+systemd-update-done.service            static          -            
+systemd-update-utmp-runlevel.service   static          -            
+systemd-update-utmp.service            static          -            
+systemd-user-sessions.service          static          -            
+systemd-userdbd.service                indirect        disabled     
+systemd-vconsole-setup.service         static          -            
+systemd-volatile-root.service          static          -            
+timeoutd.service                       generated       -            
+tmpfiles.service                       alias           -            
+tuned.service                          disabled        enabled      
+udevd-final.service                    disabled        disabled     
+udevd.service                          alias           -            
+updater-after.service                  disabled        disabled     
+updater-main.service                   disabled        disabled     
+updater-signing.service                disabled        disabled     
+user-runtime-dir@.service              static          -            
+user@.service                          static          -            
+vconsole-setup-kludge@.service         disabled        disabled     
+vgauthd.service                        disabled        disabled     
+vmtoolsd.service                       disabled        disabled     
+wpa_supplicant-nl80211@.service        disabled        disabled     
+wpa_supplicant-wired@.service          disabled        disabled     
+wpa_supplicant.service                 disabled        disabled     
+wpa_supplicant@.service                disabled        disabled     
+system-systemd\x2dcryptsetup.slice     static          -            
+user.slice                             static          -            
+acpid.socket                           enabled         enabled      
+alteratord.socket                      enabled         disabled     
+cups-lpd.socket                        disabled        disabled     
+cups.socket                            disabled        enabled      
+dbus.socket                            static          -            
+dm-event.socket                        disabled        enabled      
+lvm2-lvmpolld.socket                   disabled        enabled      
+multipathd.socket                      disabled        disabled     
+nscd.socket                            enabled         disabled     
+rpcbind.socket                         disabled        disabled     
+sssd-nss.socket                        disabled        disabled     
+sssd-pac.socket                        disabled        disabled     
+sssd-pam-priv.socket                   disabled        disabled     
+sssd-pam.socket                        disabled        disabled     
+sssd-ssh.socket                        disabled        disabled     
+sssd-sudo.socket                       disabled        disabled     
+syslog.socket                          static          -            
+systemd-initctl.socket                 static          -            
+systemd-journald-audit.socket          static          -            
+systemd-journald-dev-log.socket        static          -            
+systemd-journald-varlink@.socket       static          -            
+systemd-journald.socket                static          -            
+systemd-journald@.socket               static          -            
+systemd-networkd.socket                enabled         disabled     
+systemd-rfkill.socket                  static          -            
+systemd-udevd-control.socket           static          -            
+systemd-udevd-kernel.socket            static          -            
+systemd-userdbd.socket                 enabled         enabled      
+basic.target                           static          -            
+blockdev@.target                       static          -            
+bluetooth.target                       static          -            
+boot-complete.target                   static          -            
+cloud-config.target                    static          -            
+cloud-init.target                      enabled-runtime disabled     
+cryptsetup-pre.target                  static          -            
+cryptsetup.target                      static          -            
+ctrl-alt-del.target                    alias           -            
+default.target                         alias           -            
+emergency.target                       static          -            
+exit.target                            disabled        disabled     
+final.target                           static          -            
+getty-pre.target                       static          -            
+getty.target                           static          -            
+graphical.target                       static          -            
+halt.target                            disabled        disabled     
+hibernate.target                       static          -            
+hybrid-sleep.target                    static          -            
+initrd-fs.target                       static          -            
+initrd-root-device.target              static          -            
+initrd-root-fs.target                  static          -            
+initrd-switch-root.target              static          -            
+initrd.target                          static          -            
+kexec.target                           disabled        disabled     
+local-fs-pre.target                    static          -            
+local-fs.target                        static          -            
+multi-user.target                      indirect        disabled     
+network-online.target                  static          -            
+network-pre.target                     static          -            
+network.target                         static          -            
+nfs-client.target                      disabled        disabled     
+nss-lookup.target                      static          -            
+nss-user-lookup.target                 static          -            
+paths.target                           static          -            
+poweroff.target                        disabled        disabled     
+printer.target                         static          -            
+reboot.target                          enabled         enabled      
+remote-cryptsetup.target               enabled         enabled      
+remote-fs-pre.target                   static          -            
+remote-fs.target                       enabled         enabled      
+rescue.target                          static          -            
+rpc_pipefs.target                      static          -            
+rpcbind.target                         static          -            
+runlevel0.target                       alias           -            
+runlevel1.target                       alias           -            
+runlevel2.target                       alias           -            
+runlevel3.target                       alias           -            
+runlevel4.target                       alias           -            
+runlevel5.target                       alias           -            
+runlevel6.target                       alias           -            
+shutdown.target                        static          -            
+sigpwr.target                          static          -            
+sleep.target                           static          -            
+slices.target                          static          -            
+smartcard.target                       static          -            
+sockets.target                         static          -            
+sound.target                           static          -            
+suspend-then-hibernate.target          static          -            
+suspend.target                         static          -            
+swap.target                            static          -            
+sysinit.target                         static          -            
+system-update-pre.target               static          -            
+system-update.target                   static          -            
+time-set.target                        static          -            
+time-sync.target                       static          -            
+timers.target                          static          -            
+umount.target                          static          -            
+usb-gadget.target                      static          -            
+fstrim.timer                           disabled        disabled     
+mdadm-last-resort@.timer               static          -            
+osec.timer                             disabled        disabled     
+sysstat-collect.timer                  disabled        disabled     
+sysstat-summary.timer                  disabled        disabled     
+systemd-tmpfiles-clean.timer           static          -            
+
+338 unit files listed.
+
+2023-09-10T06:48:35Z DEBUG stderr=
+2023-09-10T06:48:35Z DEBUG Starting external process
+2023-09-10T06:48:35Z DEBUG args=['/sbin/systemctl', 'is-enabled', 'nscd.service']
+2023-09-10T06:48:35Z DEBUG Process finished, return code=0
+2023-09-10T06:48:35Z DEBUG stdout=enabled
+
+2023-09-10T06:48:35Z DEBUG stderr=
+2023-09-10T06:48:35Z DEBUG Starting external process
+2023-09-10T06:48:35Z DEBUG args=['/sbin/systemctl', 'is-active', 'nscd.service']
+2023-09-10T06:48:35Z DEBUG Process finished, return code=0
+2023-09-10T06:48:35Z DEBUG stdout=active
+
+2023-09-10T06:48:35Z DEBUG stderr=
+2023-09-10T06:48:35Z DEBUG Loading StateFile from '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:35Z DEBUG Saving StateFile to '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:35Z DEBUG Loading StateFile from '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:35Z DEBUG Saving StateFile to '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:35Z DEBUG Starting external process
+2023-09-10T06:48:35Z DEBUG args=['/sbin/systemctl', 'stop', 'nscd.service']
+2023-09-10T06:48:35Z DEBUG Process finished, return code=0
+2023-09-10T06:48:35Z DEBUG stdout=
+2023-09-10T06:48:35Z DEBUG stderr=Warning: Stopping nscd.service, but it can still be activated by:
+  nscd.socket
+
+2023-09-10T06:48:35Z DEBUG Stop of nscd.service complete
+2023-09-10T06:48:35Z DEBUG Starting external process
+2023-09-10T06:48:35Z DEBUG args=['/sbin/systemctl', 'disable', 'nscd.service']
+2023-09-10T06:48:36Z DEBUG Process finished, return code=0
+2023-09-10T06:48:36Z DEBUG stdout=
+2023-09-10T06:48:36Z DEBUG stderr=Synchronizing state of nscd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install disable nscd
+Removed /etc/systemd/system/multi-user.target.wants/nscd.service.
+Removed /etc/systemd/system/sockets.target.wants/nscd.socket.
+
+2023-09-10T06:48:36Z DEBUG Starting external process
+2023-09-10T06:48:36Z DEBUG args=['/sbin/systemctl', 'list-unit-files', '--full']
+2023-09-10T06:48:36Z DEBUG Process finished, return code=0
+2023-09-10T06:48:36Z DEBUG stdout=UNIT FILE                              STATE           VENDOR PRESET
+proc-sys-fs-binfmt_misc.automount      static          -            
+-.mount                                generated       -            
+boot.mount                             generated       -            
+dev-hugepages.mount                    static          -            
+dev-mqueue.mount                       static          -            
+proc-fs-nfsd.mount                     static          -            
+proc-sys-fs-binfmt_misc.mount          disabled        disabled     
+sys-fs-fuse-connections.mount          static          -            
+sys-kernel-config.mount                static          -            
+sys-kernel-debug.mount                 static          -            
+sys-kernel-tracing.mount               static          -            
+tmp-.private-root.mount                generated       -            
+tmp.mount                              generated       -            
+var-lib-nfs-rpc_pipefs.mount           static          -            
+var-lock.mount                         static          -            
+var-run.mount                          static          -            
+altlinux-libresolv.path                disabled        disabled     
+altlinux-openresolv.path               disabled        enabled      
+altlinux-simpleresolv.path             disabled        disabled     
+cups.path                              disabled        enabled      
+systemd-ask-password-console.path      static          -            
+systemd-ask-password-plymouth.path     static          -            
+systemd-ask-password-wall.path         static          -            
+session-381.scope                      transient       -            
+acpid.service                          enabled         enabled      
+alt-checksum.service                   enabled         disabled     
+alteratord.service                     enabled         disabled     
+altlinux-clock-setup.service           disabled        disabled     
+altlinux-first_time.service            static          -            
+altlinux-libresolv.service             static          -            
+altlinux-openresolv.service            static          -            
+altlinux-simpleresolv.service          static          -            
+anacron.service                        disabled        disabled     
+auditd.service                         enabled         enabled      
+auth-rpcgss-module.service             static          -            
+autovt@.service                        alias           -            
+blk-availability.service               disabled        disabled     
+blkmapd.service                        alias           -            
+certmonger.service                     disabled        disabled     
+cgconfig.service                       disabled        disabled     
+cgred.service                          disabled        disabled     
+chrony-wait.service                    disabled        disabled     
+chronyd.service                        enabled         enabled      
+clock.service                          alias           -            
+cloud-config.service                   enabled         disabled     
+cloud-final.service                    enabled         disabled     
+cloud-init-local.service               enabled         disabled     
+cloud-init.service                     enabled         disabled     
+colord.service                         static          -            
+console-getty.service                  disabled        disabled     
+consolesaver.service                   generated       -            
+container-getty@.service               static          -            
+crond.service                          enabled         enabled      
+cryptdisks.functions.service           generated       -            
+cups-browsed.service                   disabled        disabled     
+cups-lpd@.service                      static          -            
+cups.service                           disabled        enabled      
+daemontools.service                    enabled         disabled     
+dbus-org.freedesktop.hostname1.service alias           -            
+dbus-org.freedesktop.locale1.service   alias           -            
+dbus-org.freedesktop.login1.service    alias           -            
+dbus-org.freedesktop.network1.service  alias           -            
+dbus-org.freedesktop.resolve1.service  alias           -            
+dbus-org.freedesktop.timedate1.service alias           -            
+dbus.service                           static          -            
+debug-shell.service                    disabled        disabled     
+dm-event.service                       static          -            
+emergency.service                      static          -            
+ethtool.service                        generated       -            
+fbsetfont.service                      masked          disabled     
+fstrim.service                         static          -            
+getty@.service                         enabled         enabled      
+gpm.service                            disabled        enabled      
+gssd.service                           alias           -            
+halt.service                           alias           -            
+idmapd.service                         alias           -            
+ifplugd.service                        generated       -            
+initrd-cleanup.service                 static          -            
+initrd-parse-etc.service               static          -            
+initrd-switch-root.service             static          -            
+initrd-udevadm-cleanup-db.service      static          -            
+integalert.service                     disabled        enabled      
+integrity-notifier.service             disabled        disabled     
+integrity-scanner.service              disabled        disabled     
+iptables.service                       disabled        disabled     
+irqbalance.service                     disabled        disabled     
+keytable.service                       masked          disabled     
+killall.service                        masked          disabled     
+kmod-static-nodes.service              static          -            
+ldconfig.service                       static          -            
+lm_sensors.service                     disabled        disabled     
+local.service                          alias           -            
+lvm2-lvmpolld.service                  static          -            
+lvm2-monitor.service                   disabled        enabled      
+lvm2-pvscan@.service                   static          -            
+mdadm-grow-continue@.service           static          -            
+mdadm-last-resort@.service             static          -            
+mdadm.service                          alias           -            
+mdmon@.service                         static          -            
+mdmonitor.service                      static          -            
+messagebus.service                     alias           -            
+modprobe@.service                      static          -            
+multipathd.service                     disabled        enabled      
+netfs.service                          masked          disabled     
+netplan-wpa@.service                   static          -            
+nfs-blkmap.service                     disabled        disabled     
+nfs-idmapd.service                     static          -            
+nfs-mountd.service                     static          -            
+nfs-server.service                     disabled        disabled     
+nfs-utils.service                      static          -            
+nfs.service                            alias           -            
+nfslock.service                        alias           -            
+nscd.service                           disabled        disabled     
+nslcd.service                          enabled         disabled     
+oddjobd.service                        disabled        disabled     
+osec.service                           static          -            
+pam_namespace.service                  static          -            
+plymouth-halt.service                  static          -            
+plymouth-kexec.service                 static          -            
+plymouth-poweroff.service              static          -            
+plymouth-quit-wait.service             static          -            
+plymouth-quit.service                  static          -            
+plymouth-read-write.service            static          -            
+plymouth-reboot.service                static          -            
+plymouth-start.service                 static          -            
+plymouth-switch-root.service           static          -            
+plymouth.service                       alias           -            
+polkit.service                         static          -            
+postfix.service                        enabled         disabled     
+qemu-guest-agent.service               enabled         enabled      
+quotaon.service                        static          -            
+random.service                         alias           -            
+rawdevices.service                     generated       -            
+rc-local.service                       static          -            
+rdisc.service                          disabled        disabled     
+reboot.service                         alias           -            
+rescue.service                         static          -            
+rpc-gssd.service                       static          -            
+rpc-statd-notify.service               static          -            
+rpc-statd.service                      static          -            
+rpc-svcgssd.service                    static          -            
+rpcbind.service                        disabled        disabled     
+runit.service                          disabled        disabled     
+secdeltab.service                      enabled         disabled     
+serial-getty@.service                  indirect        disabled     
+single.service                         masked          disabled     
+smartd.service                         disabled        enabled      
+sshd.service                           enabled         enabled      
+sssd-nss.service                       indirect        disabled     
+sssd-pac.service                       indirect        disabled     
+sssd-pam.service                       indirect        disabled     
+sssd-ssh.service                       indirect        disabled     
+sssd-sudo.service                      indirect        disabled     
+sssd.service                           enabled         disabled     
+svcgssd.service                        alias           -            
+sysstat-collect.service                static          -            
+sysstat-summary.service                static          -            
+sysstat.service                        disabled        enabled      
+system-update-cleanup.service          static          -            
+systemd-ask-password-console.service   static          -            
+systemd-ask-password-plymouth.service  static          -            
+systemd-ask-password-wall.service      static          -            
+systemd-backlight@.service             static          -            
+systemd-binfmt.service                 static          -            
+systemd-bless-boot.service             static          -            
+systemd-boot-check-no-failures.service disabled        disabled     
+systemd-boot-system-token.service      static          -            
+systemd-exit.service                   static          -            
+systemd-firstboot.service              static          -            
+systemd-fsck-root.service              enabled-runtime disabled     
+systemd-fsck@.service                  static          -            
+systemd-halt.service                   static          -            
+systemd-hibernate-resume@.service      static          -            
+systemd-hibernate.service              static          -            
+systemd-hostnamed.service              static          -            
+systemd-hwdb-update.service            static          -            
+systemd-hybrid-sleep.service           static          -            
+systemd-initctl.service                static          -            
+systemd-journal-catalog-update.service static          -            
+systemd-journal-flush.service          static          -            
+systemd-journald.service               static          -            
+systemd-journald@.service              static          -            
+systemd-kexec.service                  static          -            
+systemd-localed.service                static          -            
+systemd-logind.service                 static          -            
+systemd-machine-id-commit.service      static          -            
+systemd-modules-load.service           static          -            
+systemd-network-generator.service      disabled        disabled     
+systemd-networkd-wait-online.service   enabled         disabled     
+systemd-networkd.service               enabled         enabled      
+systemd-poweroff.service               static          -            
+systemd-pstore.service                 enabled         enabled      
+systemd-quotacheck.service             static          -            
+systemd-random-seed.service            static          -            
+systemd-reboot.service                 static          -            
+systemd-remount-fs.service             enabled-runtime disabled     
+systemd-repart.service                 static          -            
+systemd-resolved.service               enabled         enabled      
+systemd-rfkill.service                 static          -            
+systemd-suspend-then-hibernate.service static          -            
+systemd-suspend.service                static          -            
+systemd-sysctl.service                 static          -            
+systemd-timedated.service              static          -            
+systemd-tmpfiles-clean.service         static          -            
+systemd-tmpfiles-setup-dev.service     static          -            
+systemd-tmpfiles-setup.service         static          -            
+systemd-udev-settle.service            static          -            
+systemd-udev-trigger.service           static          -            
+systemd-udevd.service                  static          -            
+systemd-update-done.service            static          -            
+systemd-update-utmp-runlevel.service   static          -            
+systemd-update-utmp.service            static          -            
+systemd-user-sessions.service          static          -            
+systemd-userdbd.service                indirect        disabled     
+systemd-vconsole-setup.service         static          -            
+systemd-volatile-root.service          static          -            
+timeoutd.service                       generated       -            
+tmpfiles.service                       alias           -            
+tuned.service                          disabled        enabled      
+udevd-final.service                    disabled        disabled     
+udevd.service                          alias           -            
+updater-after.service                  disabled        disabled     
+updater-main.service                   disabled        disabled     
+updater-signing.service                disabled        disabled     
+user-runtime-dir@.service              static          -            
+user@.service                          static          -            
+vconsole-setup-kludge@.service         disabled        disabled     
+vgauthd.service                        disabled        disabled     
+vmtoolsd.service                       disabled        disabled     
+wpa_supplicant-nl80211@.service        disabled        disabled     
+wpa_supplicant-wired@.service          disabled        disabled     
+wpa_supplicant.service                 disabled        disabled     
+wpa_supplicant@.service                disabled        disabled     
+system-systemd\x2dcryptsetup.slice     static          -            
+user.slice                             static          -            
+acpid.socket                           enabled         enabled      
+alteratord.socket                      enabled         disabled     
+cups-lpd.socket                        disabled        disabled     
+cups.socket                            disabled        enabled      
+dbus.socket                            static          -            
+dm-event.socket                        disabled        enabled      
+lvm2-lvmpolld.socket                   disabled        enabled      
+multipathd.socket                      disabled        disabled     
+nscd.socket                            disabled        disabled     
+rpcbind.socket                         disabled        disabled     
+sssd-nss.socket                        disabled        disabled     
+sssd-pac.socket                        disabled        disabled     
+sssd-pam-priv.socket                   disabled        disabled     
+sssd-pam.socket                        disabled        disabled     
+sssd-ssh.socket                        disabled        disabled     
+sssd-sudo.socket                       disabled        disabled     
+syslog.socket                          static          -            
+systemd-initctl.socket                 static          -            
+systemd-journald-audit.socket          static          -            
+systemd-journald-dev-log.socket        static          -            
+systemd-journald-varlink@.socket       static          -            
+systemd-journald.socket                static          -            
+systemd-journald@.socket               static          -            
+systemd-networkd.socket                enabled         disabled     
+systemd-rfkill.socket                  static          -            
+systemd-udevd-control.socket           static          -            
+systemd-udevd-kernel.socket            static          -            
+systemd-userdbd.socket                 enabled         enabled      
+basic.target                           static          -            
+blockdev@.target                       static          -            
+bluetooth.target                       static          -            
+boot-complete.target                   static          -            
+cloud-config.target                    static          -            
+cloud-init.target                      enabled-runtime disabled     
+cryptsetup-pre.target                  static          -            
+cryptsetup.target                      static          -            
+ctrl-alt-del.target                    alias           -            
+default.target                         alias           -            
+emergency.target                       static          -            
+exit.target                            disabled        disabled     
+final.target                           static          -            
+getty-pre.target                       static          -            
+getty.target                           static          -            
+graphical.target                       static          -            
+halt.target                            disabled        disabled     
+hibernate.target                       static          -            
+hybrid-sleep.target                    static          -            
+initrd-fs.target                       static          -            
+initrd-root-device.target              static          -            
+initrd-root-fs.target                  static          -            
+initrd-switch-root.target              static          -            
+initrd.target                          static          -            
+kexec.target                           disabled        disabled     
+local-fs-pre.target                    static          -            
+local-fs.target                        static          -            
+multi-user.target                      indirect        disabled     
+network-online.target                  static          -            
+network-pre.target                     static          -            
+network.target                         static          -            
+nfs-client.target                      disabled        disabled     
+nss-lookup.target                      static          -            
+nss-user-lookup.target                 static          -            
+paths.target                           static          -            
+poweroff.target                        disabled        disabled     
+printer.target                         static          -            
+reboot.target                          enabled         enabled      
+remote-cryptsetup.target               enabled         enabled      
+remote-fs-pre.target                   static          -            
+remote-fs.target                       enabled         enabled      
+rescue.target                          static          -            
+rpc_pipefs.target                      static          -            
+rpcbind.target                         static          -            
+runlevel0.target                       alias           -            
+runlevel1.target                       alias           -            
+runlevel2.target                       alias           -            
+runlevel3.target                       alias           -            
+runlevel4.target                       alias           -            
+runlevel5.target                       alias           -            
+runlevel6.target                       alias           -            
+shutdown.target                        static          -            
+sigpwr.target                          static          -            
+sleep.target                           static          -            
+slices.target                          static          -            
+smartcard.target                       static          -            
+sockets.target                         static          -            
+sound.target                           static          -            
+suspend-then-hibernate.target          static          -            
+suspend.target                         static          -            
+swap.target                            static          -            
+sysinit.target                         static          -            
+system-update-pre.target               static          -            
+system-update.target                   static          -            
+time-set.target                        static          -            
+time-sync.target                       static          -            
+timers.target                          static          -            
+umount.target                          static          -            
+usb-gadget.target                      static          -            
+fstrim.timer                           disabled        disabled     
+mdadm-last-resort@.timer               static          -            
+osec.timer                             disabled        disabled     
+sysstat-collect.timer                  disabled        disabled     
+sysstat-summary.timer                  disabled        disabled     
+systemd-tmpfiles-clean.timer           static          -            
+
+338 unit files listed.
+
+2023-09-10T06:48:36Z DEBUG stderr=
+2023-09-10T06:48:36Z DEBUG Starting external process
+2023-09-10T06:48:36Z DEBUG args=['/sbin/systemctl', 'is-enabled', 'nslcd.service']
+2023-09-10T06:48:36Z DEBUG Process finished, return code=0
+2023-09-10T06:48:36Z DEBUG stdout=enabled
+
+2023-09-10T06:48:36Z DEBUG stderr=
+2023-09-10T06:48:36Z DEBUG Starting external process
+2023-09-10T06:48:36Z DEBUG args=['/sbin/systemctl', 'is-active', 'nslcd.service']
+2023-09-10T06:48:36Z DEBUG Process finished, return code=0
+2023-09-10T06:48:36Z DEBUG stdout=active
+
+2023-09-10T06:48:36Z DEBUG stderr=
+2023-09-10T06:48:36Z DEBUG Loading StateFile from '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:36Z DEBUG Saving StateFile to '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:36Z DEBUG Loading StateFile from '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:36Z DEBUG Saving StateFile to '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:36Z DEBUG Updating configuration file /etc/nsswitch.conf
+2023-09-10T06:48:36Z DEBUG 
+#
+# Please refer to nsswitch.conf(5) for more information on this file.
+#
+# This is the Name Service Switch configuration file.  This file should
+# be sorted with the most-used databases at the beginning.
+#
+# Specifying '[NOTFOUND=return]' means that the search for an entry
+# should stop if the search with the previous service turned up nothing.
+# Note that if the search failed due to some other reason (like no NIS
+# server responding) then the search continues with the next service.
+#
+# Legal name services are:
+#
+#	files			Use local files
+#	tcb			Use local tcb shadow files, see tcb(5)
+#	db			Use local database files under /var/db
+#	nis or yp		Use NIS (NIS version 2), also called YP
+#	nisplus or nis+		Use NIS+ (NIS version 3)
+#	dns			Use DNS (Domain Name Service)
+#	compat			Use NIS in compatibility mode
+#	hesiod			Use Hesiod for user lookups
+#	[NOTFOUND=return]	Stop searching if not found so far
+#
+
+passwd: sss files
+
+shadow:     tcb files
+group:      files
+gshadow:    files
+
+hosts:      files dns myhostname
+
+# To use db, put the "db" in front of "files" for things you want to be
+# looked up first in the db files.
+#
+#passwd:    db files nisplus nis
+#shadow:    db tcb files nisplus nis
+#group:     db files nisplus nis
+#
+#hosts:     db files nisplus nis dns
+
+ethers:     files
+netmasks:   files
+networks:   files
+protocols:  files
+rpc:        files
+services:   files
+
+# Example - obey only what nisplus tells us...
+#services:  nisplus [NOTFOUND=return] files
+#networks:  nisplus [NOTFOUND=return] files
+#protocols: nisplus [NOTFOUND=return] files
+#rpc:       nisplus [NOTFOUND=return] files
+#ethers:    nisplus [NOTFOUND=return] files
+#netmasks:  nisplus [NOTFOUND=return] files
+#bootparams: nisplus [NOTFOUND=return] files
+#netgroup:   nisplus
+#publickey:  nisplus
+
+automount:  files
+aliases:    files
+sudoers: files sss
+
+2023-09-10T06:48:36Z INFO Configured passwd in /etc/nsswitch.conf
+2023-09-10T06:48:36Z DEBUG Updating configuration file /etc/nsswitch.conf
+2023-09-10T06:48:36Z DEBUG 
+#
+# Please refer to nsswitch.conf(5) for more information on this file.
+#
+# This is the Name Service Switch configuration file.  This file should
+# be sorted with the most-used databases at the beginning.
+#
+# Specifying '[NOTFOUND=return]' means that the search for an entry
+# should stop if the search with the previous service turned up nothing.
+# Note that if the search failed due to some other reason (like no NIS
+# server responding) then the search continues with the next service.
+#
+# Legal name services are:
+#
+#	files			Use local files
+#	tcb			Use local tcb shadow files, see tcb(5)
+#	db			Use local database files under /var/db
+#	nis or yp		Use NIS (NIS version 2), also called YP
+#	nisplus or nis+		Use NIS+ (NIS version 3)
+#	dns			Use DNS (Domain Name Service)
+#	compat			Use NIS in compatibility mode
+#	hesiod			Use Hesiod for user lookups
+#	[NOTFOUND=return]	Stop searching if not found so far
+#
+
+passwd: sss files
+
+shadow:     tcb files
+group: sss files
+
+gshadow:    files
+
+hosts:      files dns myhostname
+
+# To use db, put the "db" in front of "files" for things you want to be
+# looked up first in the db files.
+#
+#passwd:    db files nisplus nis
+#shadow:    db tcb files nisplus nis
+#group:     db files nisplus nis
+#
+#hosts:     db files nisplus nis dns
+
+ethers:     files
+netmasks:   files
+networks:   files
+protocols:  files
+rpc:        files
+services:   files
+
+# Example - obey only what nisplus tells us...
+#services:  nisplus [NOTFOUND=return] files
+#networks:  nisplus [NOTFOUND=return] files
+#protocols: nisplus [NOTFOUND=return] files
+#rpc:       nisplus [NOTFOUND=return] files
+#ethers:    nisplus [NOTFOUND=return] files
+#netmasks:  nisplus [NOTFOUND=return] files
+#bootparams: nisplus [NOTFOUND=return] files
+#netgroup:   nisplus
+#publickey:  nisplus
+
+automount:  files
+aliases:    files
+sudoers: files sss
+
+2023-09-10T06:48:36Z INFO Configured group in /etc/nsswitch.conf
+2023-09-10T06:48:36Z DEBUG Updating configuration file /etc/nsswitch.conf
+2023-09-10T06:48:36Z DEBUG 
+
+#
+# Please refer to nsswitch.conf(5) for more information on this file.
+#
+# This is the Name Service Switch configuration file.  This file should
+# be sorted with the most-used databases at the beginning.
+#
+# Specifying '[NOTFOUND=return]' means that the search for an entry
+# should stop if the search with the previous service turned up nothing.
+# Note that if the search failed due to some other reason (like no NIS
+# server responding) then the search continues with the next service.
+#
+# Legal name services are:
+#
+#	files			Use local files
+#	tcb			Use local tcb shadow files, see tcb(5)
+#	db			Use local database files under /var/db
+#	nis or yp		Use NIS (NIS version 2), also called YP
+#	nisplus or nis+		Use NIS+ (NIS version 3)
+#	dns			Use DNS (Domain Name Service)
+#	compat			Use NIS in compatibility mode
+#	hesiod			Use Hesiod for user lookups
+#	[NOTFOUND=return]	Stop searching if not found so far
+#
+
+passwd: sss files
+
+shadow:     tcb files
+group: sss files
+
+gshadow:    files
+
+hosts:      files dns myhostname
+
+# To use db, put the "db" in front of "files" for things you want to be
+# looked up first in the db files.
+#
+#passwd:    db files nisplus nis
+#shadow:    db tcb files nisplus nis
+#group:     db files nisplus nis
+#
+#hosts:     db files nisplus nis dns
+
+ethers:     files
+netmasks:   files
+networks:   files
+protocols:  files
+rpc:        files
+services:   files
+
+# Example - obey only what nisplus tells us...
+#services:  nisplus [NOTFOUND=return] files
+#networks:  nisplus [NOTFOUND=return] files
+#protocols: nisplus [NOTFOUND=return] files
+#rpc:       nisplus [NOTFOUND=return] files
+#ethers:    nisplus [NOTFOUND=return] files
+#netmasks:  nisplus [NOTFOUND=return] files
+#bootparams: nisplus [NOTFOUND=return] files
+#netgroup:   nisplus
+#publickey:  nisplus
+
+automount:  files
+aliases:    files
+sudoers: files sss
+netgroup: sss files
+
+2023-09-10T06:48:36Z INFO Configured netgroup in /etc/nsswitch.conf
+2023-09-10T06:48:36Z DEBUG Updating configuration file /etc/nsswitch.conf
+2023-09-10T06:48:36Z DEBUG 
+
+#
+# Please refer to nsswitch.conf(5) for more information on this file.
+#
+# This is the Name Service Switch configuration file.  This file should
+# be sorted with the most-used databases at the beginning.
+#
+# Specifying '[NOTFOUND=return]' means that the search for an entry
+# should stop if the search with the previous service turned up nothing.
+# Note that if the search failed due to some other reason (like no NIS
+# server responding) then the search continues with the next service.
+#
+# Legal name services are:
+#
+#	files			Use local files
+#	tcb			Use local tcb shadow files, see tcb(5)
+#	db			Use local database files under /var/db
+#	nis or yp		Use NIS (NIS version 2), also called YP
+#	nisplus or nis+		Use NIS+ (NIS version 3)
+#	dns			Use DNS (Domain Name Service)
+#	compat			Use NIS in compatibility mode
+#	hesiod			Use Hesiod for user lookups
+#	[NOTFOUND=return]	Stop searching if not found so far
+#
+
+passwd: sss files
+
+shadow:     tcb files
+group: sss files
+
+gshadow:    files
+
+hosts:      files dns myhostname
+
+# To use db, put the "db" in front of "files" for things you want to be
+# looked up first in the db files.
+#
+#passwd:    db files nisplus nis
+#shadow:    db tcb files nisplus nis
+#group:     db files nisplus nis
+#
+#hosts:     db files nisplus nis dns
+
+ethers:     files
+netmasks:   files
+networks:   files
+protocols:  files
+rpc:        files
+services:   files
+
+# Example - obey only what nisplus tells us...
+#services:  nisplus [NOTFOUND=return] files
+#networks:  nisplus [NOTFOUND=return] files
+#protocols: nisplus [NOTFOUND=return] files
+#rpc:       nisplus [NOTFOUND=return] files
+#ethers:    nisplus [NOTFOUND=return] files
+#netmasks:  nisplus [NOTFOUND=return] files
+#bootparams: nisplus [NOTFOUND=return] files
+#netgroup:   nisplus
+#publickey:  nisplus
+
+automount: sss files
+
+aliases:    files
+sudoers: files sss
+netgroup: sss files
+
+2023-09-10T06:48:36Z INFO Configured automount in /etc/nsswitch.conf
+2023-09-10T06:48:36Z DEBUG Updating configuration file /etc/nsswitch.conf
+2023-09-10T06:48:36Z DEBUG 
+
+#
+# Please refer to nsswitch.conf(5) for more information on this file.
+#
+# This is the Name Service Switch configuration file.  This file should
+# be sorted with the most-used databases at the beginning.
+#
+# Specifying '[NOTFOUND=return]' means that the search for an entry
+# should stop if the search with the previous service turned up nothing.
+# Note that if the search failed due to some other reason (like no NIS
+# server responding) then the search continues with the next service.
+#
+# Legal name services are:
+#
+#	files			Use local files
+#	tcb			Use local tcb shadow files, see tcb(5)
+#	db			Use local database files under /var/db
+#	nis or yp		Use NIS (NIS version 2), also called YP
+#	nisplus or nis+		Use NIS+ (NIS version 3)
+#	dns			Use DNS (Domain Name Service)
+#	compat			Use NIS in compatibility mode
+#	hesiod			Use Hesiod for user lookups
+#	[NOTFOUND=return]	Stop searching if not found so far
+#
+
+passwd: sss files
+
+shadow:     tcb files
+group: sss files
+
+gshadow:    files
+
+hosts:      files dns myhostname
+
+# To use db, put the "db" in front of "files" for things you want to be
+# looked up first in the db files.
+#
+#passwd:    db files nisplus nis
+#shadow:    db tcb files nisplus nis
+#group:     db files nisplus nis
+#
+#hosts:     db files nisplus nis dns
+
+ethers:     files
+netmasks:   files
+networks:   files
+protocols:  files
+rpc:        files
+services: sss files
+
+
+# Example - obey only what nisplus tells us...
+#services:  nisplus [NOTFOUND=return] files
+#networks:  nisplus [NOTFOUND=return] files
+#protocols: nisplus [NOTFOUND=return] files
+#rpc:       nisplus [NOTFOUND=return] files
+#ethers:    nisplus [NOTFOUND=return] files
+#netmasks:  nisplus [NOTFOUND=return] files
+#bootparams: nisplus [NOTFOUND=return] files
+#netgroup:   nisplus
+#publickey:  nisplus
+
+automount: sss files
+
+aliases:    files
+sudoers: files sss
+netgroup: sss files
+
+2023-09-10T06:48:36Z INFO Configured services in /etc/nsswitch.conf
+2023-09-10T06:48:36Z DEBUG Updating configuration file /etc/nsswitch.conf
+2023-09-10T06:48:36Z DEBUG 
+
+#
+# Please refer to nsswitch.conf(5) for more information on this file.
+#
+# This is the Name Service Switch configuration file.  This file should
+# be sorted with the most-used databases at the beginning.
+#
+# Specifying '[NOTFOUND=return]' means that the search for an entry
+# should stop if the search with the previous service turned up nothing.
+# Note that if the search failed due to some other reason (like no NIS
+# server responding) then the search continues with the next service.
+#
+# Legal name services are:
+#
+#	files			Use local files
+#	tcb			Use local tcb shadow files, see tcb(5)
+#	db			Use local database files under /var/db
+#	nis or yp		Use NIS (NIS version 2), also called YP
+#	nisplus or nis+		Use NIS+ (NIS version 3)
+#	dns			Use DNS (Domain Name Service)
+#	compat			Use NIS in compatibility mode
+#	hesiod			Use Hesiod for user lookups
+#	[NOTFOUND=return]	Stop searching if not found so far
+#
+
+passwd: sss files
+
+shadow: sss tcb files
+
+group: sss files
+
+gshadow:    files
+
+hosts:      files dns myhostname
+
+# To use db, put the "db" in front of "files" for things you want to be
+# looked up first in the db files.
+#
+#passwd:    db files nisplus nis
+#shadow:    db tcb files nisplus nis
+#group:     db files nisplus nis
+#
+#hosts:     db files nisplus nis dns
+
+ethers:     files
+netmasks:   files
+networks:   files
+protocols:  files
+rpc:        files
+services: sss files
+
+
+# Example - obey only what nisplus tells us...
+#services:  nisplus [NOTFOUND=return] files
+#networks:  nisplus [NOTFOUND=return] files
+#protocols: nisplus [NOTFOUND=return] files
+#rpc:       nisplus [NOTFOUND=return] files
+#ethers:    nisplus [NOTFOUND=return] files
+#netmasks:  nisplus [NOTFOUND=return] files
+#bootparams: nisplus [NOTFOUND=return] files
+#netgroup:   nisplus
+#publickey:  nisplus
+
+automount: sss files
+
+aliases:    files
+sudoers: files sss
+netgroup: sss files
+
+2023-09-10T06:48:36Z INFO Configured shadow in /etc/nsswitch.conf
+2023-09-10T06:48:36Z DEBUG Updating configuration file /etc/nsswitch.conf
+2023-09-10T06:48:36Z DEBUG 
+
+#
+# Please refer to nsswitch.conf(5) for more information on this file.
+#
+# This is the Name Service Switch configuration file.  This file should
+# be sorted with the most-used databases at the beginning.
+#
+# Specifying '[NOTFOUND=return]' means that the search for an entry
+# should stop if the search with the previous service turned up nothing.
+# Note that if the search failed due to some other reason (like no NIS
+# server responding) then the search continues with the next service.
+#
+# Legal name services are:
+#
+#	files			Use local files
+#	tcb			Use local tcb shadow files, see tcb(5)
+#	db			Use local database files under /var/db
+#	nis or yp		Use NIS (NIS version 2), also called YP
+#	nisplus or nis+		Use NIS+ (NIS version 3)
+#	dns			Use DNS (Domain Name Service)
+#	compat			Use NIS in compatibility mode
+#	hesiod			Use Hesiod for user lookups
+#	[NOTFOUND=return]	Stop searching if not found so far
+#
+
+passwd: sss files
+
+shadow: sss tcb files
+
+group: sss files
+
+gshadow:    files
+
+hosts:      files dns myhostname
+
+# To use db, put the "db" in front of "files" for things you want to be
+# looked up first in the db files.
+#
+#passwd:    db files nisplus nis
+#shadow:    db tcb files nisplus nis
+#group:     db files nisplus nis
+#
+#hosts:     db files nisplus nis dns
+
+ethers:     files
+netmasks:   files
+networks:   files
+protocols:  files
+rpc:        files
+services: sss files
+
+
+# Example - obey only what nisplus tells us...
+#services:  nisplus [NOTFOUND=return] files
+#networks:  nisplus [NOTFOUND=return] files
+#protocols: nisplus [NOTFOUND=return] files
+#rpc:       nisplus [NOTFOUND=return] files
+#ethers:    nisplus [NOTFOUND=return] files
+#netmasks:  nisplus [NOTFOUND=return] files
+#bootparams: nisplus [NOTFOUND=return] files
+#netgroup:   nisplus
+#publickey:  nisplus
+
+automount: sss files
+
+aliases:    files
+sudoers: files sss
+
+netgroup: sss files
+
+2023-09-10T06:48:36Z INFO Configured sudoers in /etc/nsswitch.conf
+2023-09-10T06:48:36Z DEBUG Starting external process
+2023-09-10T06:48:36Z DEBUG args=['control', 'system-auth']
+2023-09-10T06:48:36Z DEBUG Process finished, return code=0
+2023-09-10T06:48:36Z DEBUG stdout=local
+
+2023-09-10T06:48:36Z DEBUG stderr=
+2023-09-10T06:48:36Z DEBUG Loading StateFile from '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:36Z DEBUG Saving StateFile to '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:36Z DEBUG Starting external process
+2023-09-10T06:48:36Z DEBUG args=['control', 'system-auth', 'sss']
+2023-09-10T06:48:36Z DEBUG Process finished, return code=0
+2023-09-10T06:48:36Z DEBUG stdout=
+2023-09-10T06:48:36Z DEBUG stderr=
+2023-09-10T06:48:36Z INFO SSSD enabled
+2023-09-10T06:48:36Z DEBUG Starting external process
+2023-09-10T06:48:36Z DEBUG args=['/sbin/systemctl', 'restart', 'sssd.service']
+2023-09-10T06:48:37Z DEBUG Process finished, return code=0
+2023-09-10T06:48:37Z DEBUG stdout=
+2023-09-10T06:48:37Z DEBUG stderr=
+2023-09-10T06:48:37Z DEBUG Starting external process
+2023-09-10T06:48:37Z DEBUG args=['/sbin/systemctl', 'is-active', 'sssd.service']
+2023-09-10T06:48:37Z DEBUG Process finished, return code=0
+2023-09-10T06:48:37Z DEBUG stdout=active
+
+2023-09-10T06:48:37Z DEBUG stderr=
+2023-09-10T06:48:37Z DEBUG Restart of sssd.service complete
+2023-09-10T06:48:37Z DEBUG Starting external process
+2023-09-10T06:48:37Z DEBUG args=['/sbin/systemctl', 'enable', 'sssd.service']
+2023-09-10T06:48:37Z DEBUG Process finished, return code=0
+2023-09-10T06:48:37Z DEBUG stdout=
+2023-09-10T06:48:37Z DEBUG stderr=Synchronizing state of sssd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable sssd
+
+2023-09-10T06:48:37Z DEBUG Backing up system configuration file '/etc/openldap/ldap.conf'
+2023-09-10T06:48:37Z DEBUG Saving Index File to '/var/lib/ipa-client/sysrestore/sysrestore.index'
+2023-09-10T06:48:37Z DEBUG Updating configuration file /etc/openldap/ldap.conf
+2023-09-10T06:48:37Z DEBUG # File modified by ipa-client-install
+
+# We do not want to break your existing configuration, hence:
+#   URI, BASE, TLS_CACERT and SASL_MECH
+#   have been added if they were not set.
+#   In case any of them were set, a comment has been inserted and
+#   "# CONF_NAME modified by IPA" added to the line above.
+# To use IPA server with openLDAP tools, please comment out your
+# existing configuration for these options and uncomment the
+# corresponding lines generated by IPA.
+
+
+#
+# LDAP Defaults
+#
+
+# See ldap.conf(5) for details
+# This file should be world readable but not world writable.
+
+#BASE	dc=example,dc=com
+#URI	ldap://ldap.example.com ldap://ldap-provider.example.com:666
+
+#SIZELIMIT	12
+#TIMELIMIT	15
+#DEREF		never
+URI ldaps://freeipa-master-01.test-krb1.novalocal
+BASE dc=test-krb1,dc=novalocal
+TLS_CACERT /etc/ipa/ca.crt
+SASL_MECH GSSAPI
+
+2023-09-10T06:48:37Z INFO Configured /etc/openldap/ldap.conf
+2023-09-10T06:48:37Z DEBUG Starting external process
+2023-09-10T06:48:37Z DEBUG args=['/usr/bin/getent', 'passwd', 'admin@test-krb1.novalocal']
+2023-09-10T06:48:37Z DEBUG Process finished, return code=0
+2023-09-10T06:48:37Z DEBUG stdout=admin:*:317200000:317200000:Administrator:/home/admin:/bin/bash
+
+2023-09-10T06:48:37Z DEBUG stderr=
+2023-09-10T06:48:37Z DEBUG Backing up system configuration file '/etc/openssh/ssh_config'
+2023-09-10T06:48:37Z DEBUG Saving Index File to '/var/lib/ipa-client/sysrestore/sysrestore.index'
+2023-09-10T06:48:37Z INFO Configured /etc/openssh/ssh_config
+2023-09-10T06:48:37Z DEBUG Backing up system configuration file '/etc/openssh/sshd_config'
+2023-09-10T06:48:37Z DEBUG Saving Index File to '/var/lib/ipa-client/sysrestore/sysrestore.index'
+2023-09-10T06:48:37Z DEBUG Starting external process
+2023-09-10T06:48:37Z DEBUG args=['/usr/sbin/sshd', '-t', '-f', '/dev/null', '-o', 'AuthorizedKeysCommand=/usr/bin/sss_ssh_authorizedkeys', '-o', 'AuthorizedKeysCommandUser=nobody']
+2023-09-10T06:48:37Z DEBUG Process finished, return code=0
+2023-09-10T06:48:37Z DEBUG stdout=
+2023-09-10T06:48:37Z DEBUG stderr=
+2023-09-10T06:48:37Z INFO Configured /etc/openssh/sshd_config
+2023-09-10T06:48:37Z DEBUG Starting external process
+2023-09-10T06:48:37Z DEBUG args=['/sbin/systemctl', 'is-active', 'sshd.service']
+2023-09-10T06:48:37Z DEBUG Process finished, return code=0
+2023-09-10T06:48:37Z DEBUG stdout=active
+
+2023-09-10T06:48:37Z DEBUG stderr=
+2023-09-10T06:48:37Z DEBUG Starting external process
+2023-09-10T06:48:37Z DEBUG args=['/sbin/systemctl', 'restart', 'sshd.service']
+2023-09-10T06:48:37Z DEBUG Process finished, return code=0
+2023-09-10T06:48:37Z DEBUG stdout=
+2023-09-10T06:48:37Z DEBUG stderr=
+2023-09-10T06:48:37Z DEBUG Starting external process
+2023-09-10T06:48:37Z DEBUG args=['/sbin/systemctl', 'is-active', 'sshd.service']
+2023-09-10T06:48:37Z DEBUG Process finished, return code=0
+2023-09-10T06:48:37Z DEBUG stdout=active
+
+2023-09-10T06:48:37Z DEBUG stderr=
+2023-09-10T06:48:37Z DEBUG Restart of sshd.service complete
+2023-09-10T06:48:37Z INFO Configuring test-krb1.novalocal as NIS domain.
+2023-09-10T06:48:37Z DEBUG Starting external process
+2023-09-10T06:48:37Z DEBUG args=['/bin/nisdomainname']
+2023-09-10T06:48:37Z DEBUG Process finished, return code=0
+2023-09-10T06:48:37Z DEBUG stdout=(none)
+
+2023-09-10T06:48:37Z DEBUG stderr=
+2023-09-10T06:48:37Z DEBUG Loading StateFile from '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:37Z DEBUG Saving StateFile to '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:37Z DEBUG Loading StateFile from '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:37Z DEBUG Saving StateFile to '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:37Z DEBUG Loading StateFile from '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:37Z DEBUG Saving StateFile to '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:37Z DEBUG Loading StateFile from '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:37Z DEBUG Saving StateFile to '/var/lib/ipa-client/sysrestore/sysrestore.state'
+2023-09-10T06:48:37Z INFO Client configuration complete.
+2023-09-10T06:48:37Z INFO The ipa-client-install command was successful
